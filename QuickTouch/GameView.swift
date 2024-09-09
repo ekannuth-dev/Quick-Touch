@@ -10,8 +10,18 @@ import SwiftUI
 
 
 struct GameView: View {
+    @State private var input = 0
     var body: some View {
-        Text("GameView")
+        NavigationStack {
+            VStack {
+                TextField("Enter a number", value: $input, format: .number)
+                    .textFieldStyle(.roundedBorder)
+                    .padding()
+            }
+            .navigationBarBackButtonHidden(true)
+            .navigationTitle("Game View")
+            InputView(timer: input)
+        }
     }
 }
 

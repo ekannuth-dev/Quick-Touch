@@ -6,27 +6,26 @@
 //
 
 import SwiftUI
+import Observation
 
-enum Images: String {
-    case Red = "Red"
-    case Blue = "Blue"
-    case Yellow = "Yellow"
-    case Green = "Green"
-}
 
 struct ContentView: View {
-    func buttonTapped(){
-        print("Hello")
-    }
+    @State var setView = false
     var body: some View {
-        VStack{
-            Text("Quick Touch")
-                .font(.largeTitle)
-            Button(action: {
-                buttonTapped()
-            })
-            {
-                Text("Click to Play")
+        NavigationStack {
+            VStack{
+                Text("Quick Touch")
+                    .font(.largeTitle)
+                    .padding()
+                Button(action: {
+                    setView = true
+                })
+                {
+                    Text("Click to Play")
+                }
+            }
+            .navigationDestination(isPresented: $setView){
+                GameView()
             }
         }
     }
