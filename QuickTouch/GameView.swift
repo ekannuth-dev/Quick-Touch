@@ -10,7 +10,7 @@ import SwiftUI
 
 
 struct GameView: View {
-    @State private var input = 0
+    @State private var input : Int?
     var body: some View {
         NavigationStack {
             VStack {
@@ -20,7 +20,6 @@ struct GameView: View {
             }
             .navigationBarBackButtonHidden(true)
             .navigationTitle("Game View")
-            InputView(timer: input)
         }
     }
 }
