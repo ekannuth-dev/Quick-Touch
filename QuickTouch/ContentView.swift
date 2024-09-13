@@ -13,7 +13,7 @@ struct ContentView: View {
     @State var setView = false
     var body: some View {
         NavigationStack {
-            VStack{
+            VStack {
                 Text("Quick Touch")
                     .font(.largeTitle)
                     .padding()

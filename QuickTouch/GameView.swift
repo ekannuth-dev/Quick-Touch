@@ -10,42 +10,52 @@ import SwiftUI
 
 
 struct GameView: View {
-    @State private var input : Int = 0
-    let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
-    @State private var valid : Bool = false
+    @ObservedObject var viewModel = GameViewModel()
+    @State private var sampleUser: userProfile?
     var body: some View {
         NavigationStack {
             VStack {
-              //      let _ = print(input)
-                Text("\(input)")
+                Text(sampleUser?.avatarUrl ?? "Display Username")
+                Text("\(sampleUser?.followers ?? 5) followers")
+                Text("\(sampleUser?.following ?? 5) following")
+                //      let _ = print(input)
+                Text("\(viewModel.input)")
                     .font(.largeTitle)
                     .padding(.horizontal, 20)
                     .padding(.vertical, 5)
-                TextField("Enter a number", value: $input, format: .number)
+                TextField("Enter a number", value: $viewModel.input, format: .number)
                     .textFieldStyle(.roundedBorder)
                     .padding()
                 HStack {
                     Button("Start Timer"){
-                        valid = true
+                        viewModel.valid = true
                     }
                     .padding()
                     .buttonStyle(.borderedProminent)
                     Button("Stop Timer"){
-                        valid = false
+                        viewModel.valid = false
                     }
                     .padding()
                     .buttonStyle(.borderedProminent)
                 }
-                 //   let _ = print(input)
+                //   let _ = print(input)
             }
-            .onReceive(timer, perform: { firedDate in
-                if valid {
-                    input -= 1
+            .onReceive(viewModel.timer, perform: { firedDate in
+                if viewModel.valid {
+                    viewModel.decrement()
                 }
             })
         }
         .navigationBarBackButtonHidden(true)
         .navigationTitle("Game View")
+        .task {
+            do {
+                try await sampleUser = viewModel.getUser()
+            }
+            catch {
+                print("error")
+            }
+        }
     }
 }
 
