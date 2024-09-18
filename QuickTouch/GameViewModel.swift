@@ -21,7 +21,7 @@ class GameViewModel: ObservableObject {
     }
     //Display a Profile
     func getUser() async throws -> userProfile {
-        let url = URL(string: "https://api.github.com/users/ekannuth-dev")! //turns string url to url object
+        let url = URL(string: "https://api.github.com/users/grazinga-grazille")! //turns string url to url object
         let (data, _) = try await URLSession.shared.data(from: url)
       //  let _ = print(data)
      //   let _ = print(response)
