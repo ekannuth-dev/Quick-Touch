@@ -21,7 +21,7 @@ struct ContentView: View {
                     setView = true
                 })
                 {
-                    Text("Click to Play")
+                    Text("Begin Session")
                 }
             }
             .navigationDestination(isPresented: $setView){

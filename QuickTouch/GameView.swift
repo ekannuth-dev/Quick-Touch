@@ -10,51 +10,37 @@ import SwiftUI
 
 
 struct GameView: View {
-    @ObservedObject var viewModel = GameViewModel()
-    @State private var sampleUser: userProfile?
+    @StateObject var viewModel = GameViewModel()
+    @State private var timerCount = 0
     var body: some View {
         NavigationStack {
             VStack {
-                Text(sampleUser?.avatarUrl ?? "Display Username")
-                Text("\(sampleUser?.followers ?? 5) followers")
-                Text("\(sampleUser?.following ?? 5) following")
                 //      let _ = print(input)
-                Text("\(viewModel.input)")
-                    .font(.largeTitle)
-                    .padding(.horizontal, 20)
-                    .padding(.vertical, 5)
-                TextField("Enter a number", value: $viewModel.input, format: .number)
-                    .textFieldStyle(.roundedBorder)
-                    .padding()
-                HStack {
-                    Button("Start Timer"){
-                        viewModel.valid = true
+                Form{
+                    HStack{
+                        Text("Session Length")
+                        Picker("Select Timer", selection: $viewModel.sessionTotal){
+                            ForEach(1...59, id: \.self) {num in
+                                Text("\(num)")
+                            }
+                        }.pickerStyle(.wheel)
+                            .padding()
+                        Text("Intervals")
+                        Picker("Intervals", selection: $viewModel.sessionInterval){
+                            ForEach(0...10, id: \.self) {num in
+                                Text("\(num)")
+                            }
+                        }.pickerStyle(.wheel)
                     }
-                    .padding()
-                    .buttonStyle(.borderedProminent)
-                    Button("Stop Timer"){
-                        viewModel.valid = false
+                    Button("Start Session"){
+                        let _ = print($viewModel.sessionTotal)
                     }
-                    .padding()
-                    .buttonStyle(.borderedProminent)
+                    .navigationTitle("Create Session")
+                    //   let _ = print(input)
                 }
-                //   let _ = print(input)
             }
-            .onReceive(viewModel.timer, perform: { firedDate in
-                if viewModel.valid {
-                    viewModel.decrement()
-                }
-            })
-        }
-        .navigationBarBackButtonHidden(true)
-        .navigationTitle("Game View")
-        .task {
-            do {
-                try await sampleUser = viewModel.getUser()
-            }
-            catch {
-                print("error")
-            }
+            .navigationBarBackButtonHidden(true)
+            .navigationTitle("Game View")
         }
     }
 }
