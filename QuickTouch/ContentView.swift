@@ -25,7 +25,7 @@ struct ContentView: View {
                 }
             }
             .navigationDestination(isPresented: $setView){
-                GameView()
+                draftView()
             }
         }
     }
