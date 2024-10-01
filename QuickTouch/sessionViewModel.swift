@@ -8,7 +8,7 @@
 import Foundation
 
 
-class draftViewModel: ObservableObject {
+class sessionViewModel: ObservableObject {
     @Published var sessionMin : Int = 0
     @Published var sessionSec : Int = 0
     @Published var onValid : Bool = false

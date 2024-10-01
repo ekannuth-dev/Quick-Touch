@@ -10,7 +10,7 @@ import SwiftUI
 
 
 struct draftView: View {
-    @StateObject var draftView = draftViewModel()
+    @StateObject var draftView = sessionViewModel()
     var body: some View {
         NavigationStack {
             Form {
