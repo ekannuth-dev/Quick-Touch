@@ -14,12 +14,10 @@ struct sessionView: View {
     var body: some View {
         NavigationStack {
             VStack{
-                if sessionDraft.sessionMin > 0 || sessionDraft.sessionSec > 0 {
-                    circularTimer(minutes: sessionDraft.sessionMin, seconds: sessionDraft.sessionSec)
-                }
-                resetSession = true
+                circularTimer(minutes: $sessionDraft.sessionMin, seconds: $sessionDraft.sessionSec, resetSession: $resetSession)
             }.navigationDestination(isPresented: $resetSession){
                 resetSessionView()
+            .navigationBarBackButtonHidden(true)
             }
         }
     }

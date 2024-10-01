@@ -10,7 +10,28 @@ import SwiftUI
 
 
 struct resetSessionView: View {
+    @State var setView : Bool = false
     var body: some View {
-        Text("Would you like to start another Session?")
+        NavigationStack {
+            VStack {
+                Text("Amazing Session")
+                    .font(.largeTitle)
+                    .padding()
+                Button(action: {
+                    setView = true
+                })
+                {
+                    Text("Would you like to create another Session?")
+                }
+            }
+            .navigationDestination(isPresented: $setView){
+                draftView()
+            }
+        }
     }
+}
+
+
+#Preview {
+    resetSessionView()
 }

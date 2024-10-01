@@ -13,22 +13,23 @@ import Combine
 
 struct circularTimer : View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State var minutes : Int
-    @State var seconds : Int
+    @Binding var minutes : Int
+    @Binding var seconds : Int
+    @Binding var resetSession : Bool
     @State private var timerText: String = ""
     @State private var progress: Float = 0.0
     @State private var step: Float = 0.0
     var body: some View {
         ZStack {
             Circle()
-                .stroke(lineWidth: 30)
+                .stroke(lineWidth: 20)
                 .foregroundColor(.blue.opacity(0.4))
             Circle()
                 .trim(from: 0.0, to: CGFloat(1-progress))
-                .stroke(lineWidth: 30)
+                .stroke(lineWidth: 20)
                 .foregroundColor(.blue)
                 .rotationEffect(.degrees(-90))
-                .animation(.linear(duration: 0.1), value: progress)
+                .animation(.linear(duration: 1), value: progress)
             Text(timerText)
                 .font(.system(size: 100))
                 .foregroundColor(.blue)
@@ -40,9 +41,17 @@ struct circularTimer : View {
                         minutes -= 1
                         seconds = 59
                     }
+                    if seconds == 0 && minutes == 0 {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { // 3-second delay
+                            withAnimation {
+                                resetSession = true
+                            }
+                        }
+                    }
                     if seconds <= 9 {
                         timerText = "\(minutes):0\(seconds)"
-                    } else {
+                    }
+                    else {
                         timerText = "\(minutes):\(seconds)"
                     }
                     progress += step
@@ -51,9 +60,14 @@ struct circularTimer : View {
         .padding(50)
         .navigationBarBackButtonHidden(true)
         .onAppear {
-            timerText = "\(minutes):\(seconds)"
+            if seconds <= 9 {
+                timerText = "\(minutes):0\(seconds)"
+            }
+            else {
+                timerText = "\(minutes):\(seconds)"
+            }
             let totalSeconds = Float(minutes * 60 + seconds)
-                        step = totalSeconds > 0 ? 1 / totalSeconds : 0
+            step = totalSeconds > 0 ? 1 / totalSeconds : 0
         }
     }
 }
