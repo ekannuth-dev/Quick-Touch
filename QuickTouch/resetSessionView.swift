@@ -21,7 +21,7 @@ struct resetSessionView: View {
                     setView = true
                 })
                 {
-                    Text("Would you like to create another Session?")
+                    Text("Create a new Session?")
                 }
             }
             .navigationDestination(isPresented: $setView){

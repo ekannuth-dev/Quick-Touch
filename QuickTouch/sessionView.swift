@@ -11,10 +11,11 @@ import SwiftUI
 struct sessionView: View {
     @ObservedObject var sessionDraft: sessionViewModel
     @State var resetSession : Bool = false
+    @State var playSession : Bool = true
     var body: some View {
         NavigationStack {
-            VStack{
-                circularTimer(minutes: $sessionDraft.sessionMin, seconds: $sessionDraft.sessionSec, resetSession: $resetSession)
+            VStack {
+                circularTimer(minutes: $sessionDraft.sessionMin, seconds: $sessionDraft.sessionSec, resetSession: $resetSession, playSession: $playSession)
             }.navigationDestination(isPresented: $resetSession){
                 resetSessionView()
             .navigationBarBackButtonHidden(true)
