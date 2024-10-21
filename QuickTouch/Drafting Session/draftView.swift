@@ -14,7 +14,7 @@ struct draftView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section{
+                Section {
                     HStack{
                         TimerView(sessionMin: $draftView.sessionMin, sessionSec: $draftView.sessionSec)
                     }

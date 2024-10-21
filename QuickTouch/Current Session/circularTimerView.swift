@@ -13,8 +13,8 @@ import Combine
 
 struct circularTimer : View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @Binding var minutes : Int
-    @Binding var seconds : Int
+    @State var minutes : Int
+    @State var seconds : Int
     @Binding var resetSession : Bool
     @Binding var playSession : Bool
     @State private var timerText: String = ""
@@ -50,7 +50,7 @@ struct circularTimer : View {
                             if seconds == 0 && minutes == 0 {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { // 2-second delay
                                     withAnimation {
-                                        resetSession = true
+                                        setResetsession()
                                     }
                                 }
                             }
@@ -60,7 +60,7 @@ struct circularTimer : View {
                             else {
                                 timerText = "\(minutes):\(seconds)"
                             }
-                            progress += step
+                            updateProgress()
                         }
                     }
             }
@@ -71,11 +71,20 @@ struct circularTimer : View {
             Button {
                 playSession.toggle()
             }
-        label: {
-            Image(systemName:  playSession ? "pause.fill" : "play.fill")
-                .resizable()               // Make the image resizable
-                .frame(width: 25, height: 25)
-        }
+            label: {
+                Image(systemName:  playSession ? "pause.fill" : "play.fill")
+                    .resizable()               // Make the image resizable
+                    .frame(width: 25, height: 25)
+            }
+            .padding()
+            Button {
+                playSession.toggle()
+            }
+            label: {
+                Image(systemName: "gobackward")
+                    .resizable()               // Make the image resizable
+                    .frame(width: 25, height: 25)
+            }
         }
         .onAppear {
             if seconds <= 9 {
@@ -87,5 +96,11 @@ struct circularTimer : View {
             let totalSeconds = Float(minutes * 60 + seconds)
             step = totalSeconds > 0 ? 1 / totalSeconds : 0
         }
+    }
+    func setResetsession(){
+        resetSession = true
+    }
+    func updateProgress(){
+        progress += step
     }
 }

@@ -9,28 +9,24 @@ import SwiftUI
 import Observation
 
 
-struct ContentView: View {
-    @State var setView = false
+struct mainView: View {
     var body: some View {
         NavigationStack {
             VStack {
                 Text("Quick Touch")
                     .font(.largeTitle)
                     .padding()
-                Button(action: {
-                    setView = true
-                })
+                NavigationLink {
+                    draftView()
+                } label:
                 {
                     Text("Begin Session")
                 }
-            }
-            .navigationDestination(isPresented: $setView){
-                draftView()
             }
         }
     }
 }
 
 #Preview {
-    ContentView()
+    mainView()
 }

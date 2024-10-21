@@ -11,7 +11,7 @@ import SwiftUI
 struct QuickTouchApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            mainView()
         }
     }
 }
