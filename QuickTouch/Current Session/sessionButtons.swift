@@ -10,8 +10,8 @@ import SwiftUI
 
 
 struct sessionButtons: View {
-    @State var play: Bool //Bindings
-    @State var reset: Bool //Bindings
+    @Binding var play: Bool //Bindings
+    @Binding var reset: Bool //Bindings
     var body: some View {
         HStack {
             Button {
@@ -24,12 +24,23 @@ struct sessionButtons: View {
             }
             .padding()
             Button {
-                play.toggle()
+                reset.toggle()
             }
             label: {
                 Image(systemName: "gobackward")
                     .resizable()               // Make the image resizable
                     .frame(width: 25, height: 25)
+                    .font(.system(size: 25, weight: .bold))
+            }
+            .padding()
+            Button {
+                reset.toggle()
+            }
+            label: {
+                Image(systemName: "xmark")
+                    .resizable()               // Make the image resizable
+                    .frame(width: 25, height: 25)
+                    .font(.system(size: 25, weight: .bold))
             }
         }
     }
@@ -38,6 +49,3 @@ struct sessionButtons: View {
 
 
 
-#Preview {
-    sessionButtons(play: false, reset: false)
-}

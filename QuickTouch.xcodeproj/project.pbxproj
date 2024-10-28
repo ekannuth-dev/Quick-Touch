@@ -16,7 +16,7 @@
 		34D894D82CA46120007E774E /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D894D72CA46120007E774E /* TimerView.swift */; };
 		34D894DA2CA7399B007E774E /* sessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D894D92CA7399B007E774E /* sessionView.swift */; };
 		34D894DE2CAB73B3007E774E /* circularTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D894DD2CAB73B3007E774E /* circularTimerView.swift */; };
-		34D894E02CAB97EF007E774E /* resetSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D894DF2CAB97EF007E774E /* resetSessionView.swift */; };
+		34D894E02CAB97EF007E774E /* endSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D894DF2CAB97EF007E774E /* endSessionView.swift */; };
 		34EF01CF2CC6AC7800F7451B /* sessionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EF01CE2CC6AC7800F7451B /* sessionButtons.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,7 +31,7 @@
 		34D894D72CA46120007E774E /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		34D894D92CA7399B007E774E /* sessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sessionView.swift; sourceTree = "<group>"; };
 		34D894DD2CAB73B3007E774E /* circularTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = circularTimerView.swift; sourceTree = "<group>"; };
-		34D894DF2CAB97EF007E774E /* resetSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetSessionView.swift; sourceTree = "<group>"; };
+		34D894DF2CAB97EF007E774E /* endSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endSessionView.swift; sourceTree = "<group>"; };
 		34EF01CE2CC6AC7800F7451B /* sessionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sessionButtons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,7 +107,7 @@
 		34EF01CD2CC5D29900F7451B /* Reset Session */ = {
 			isa = PBXGroup;
 			children = (
-				34D894DF2CAB97EF007E774E /* resetSessionView.swift */,
+				34D894DF2CAB97EF007E774E /* endSessionView.swift */,
 			);
 			path = "Reset Session";
 			sourceTree = "<group>";
@@ -185,7 +185,7 @@
 				34D894D82CA46120007E774E /* TimerView.swift in Sources */,
 				34D894DA2CA7399B007E774E /* sessionView.swift in Sources */,
 				34D894DE2CAB73B3007E774E /* circularTimerView.swift in Sources */,
-				34D894E02CAB97EF007E774E /* resetSessionView.swift in Sources */,
+				34D894E02CAB97EF007E774E /* endSessionView.swift in Sources */,
 				340E401B2C934BA30064A8ED /* sessionViewModel.swift in Sources */,
 				340E400B2C88EF310064A8ED /* mainView.swift in Sources */,
 				34EF01CF2CC6AC7800F7451B /* sessionButtons.swift in Sources */,

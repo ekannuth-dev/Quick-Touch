@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 
-struct resetSessionView: View {
+struct endSessionView: View {
     @ObservedObject var lastSession: sessionViewModel
     var body: some View {
         NavigationStack {
@@ -37,7 +37,7 @@ struct resetSessionView: View {
 }
 
 #Preview {
-    resetSessionView(lastSession: sessionViewModel())
+    endSessionView(lastSession: sessionViewModel())
 }
 
 
