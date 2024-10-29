@@ -25,6 +25,7 @@ struct sessionButtons: View {
             .padding()
             Button {
                 reset.toggle()
+                play.toggle()
             }
             label: {
                 Image(systemName: "gobackward")

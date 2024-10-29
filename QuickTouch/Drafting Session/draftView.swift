@@ -16,7 +16,7 @@ struct draftView: View {
             Form {
                 Section {
                     HStack{
-                        TimerView(sessionMin: $draftModel.sessionMin, sessionSec: $draftModel.sessionSec)
+                        TimerView(draftSession: draftModel)
                     }
                 }
                 Section{

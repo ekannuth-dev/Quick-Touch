@@ -20,9 +20,9 @@ class sessionViewModel: ObservableObject {
     @Published var timerText: String = ""
     @Published var progress: Float = 0.0
     @Published var timerCancellable: AnyCancellable?
-    private var step: Float = 0.0
-    private var initialMin : Int = 0
-    private var initialSec : Int = 0
+    var step: Float = 0.0
+    var initialMin : Int = 0
+    var initialSec : Int = 0
 
     func setTimertext(){
    //     let minString = sessionMin < 10 ? "0\(sessionMin)" : "\(sessionMin)"
@@ -46,7 +46,6 @@ class sessionViewModel: ObservableObject {
             .autoconnect()
             .sink { [weak self] _ in
                 self?.onTimerTick()
-                print("fired timer")// Handle the timer tick every second
             }
     }
     
@@ -62,18 +61,15 @@ class sessionViewModel: ObservableObject {
     
     private func onTimerTick() {
             if reset {
-                if progress <= 0 {
-                    setResetsession()
-                } else {
-                    progress -= step
-                }
+                progress = 0
+                setResetsession()
             } else if play {
                 decrementTime()
                 checkCompletion()
                 updateProgress()
             }
     }
-    func checkCompletion() {
+    func checkCompletion(){
         if sessionMin == 0 && sessionSec == 0 {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.endSession = true
@@ -81,10 +77,10 @@ class sessionViewModel: ObservableObject {
         }
     }
     
-    func setResetsession() {
-        reset = true
+    func setResetsession(){
         sessionMin = initialMin
         sessionSec = initialSec
+        reset = false
         setTimertext()
     }
 }
