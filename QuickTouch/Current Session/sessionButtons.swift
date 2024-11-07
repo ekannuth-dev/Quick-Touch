@@ -10,22 +10,23 @@ import SwiftUI
 
 
 struct sessionButtons: View {
-    @Binding var play: Bool //Bindings
-    @Binding var reset: Bool //Bindings
+    @ObservedObject var sameSession: sessionViewModel
+    @State var alertReset : Bool = false
+    @State var alertCancel : Bool = false
     var body: some View {
         HStack {
             Button {
-                play.toggle()
+                sameSession.play.toggle()
             }
             label: {
-                Image(systemName:  play ? "pause.fill" : "play.fill")
+                Image(systemName:  sameSession.play ? "pause.fill" : "play.fill")
                     .resizable()               // Make the image resizable
                     .frame(width: 25, height: 25)
             }
             .padding()
             Button {
-                reset.toggle()
-                play.toggle()
+                alertReset.toggle()
+                sameSession.play = false
             }
             label: {
                 Image(systemName: "gobackward")
@@ -34,8 +35,17 @@ struct sessionButtons: View {
                     .font(.system(size: 25, weight: .bold))
             }
             .padding()
+            .alert("Do you want to restart the session?", isPresented: $alertReset, actions: {
+                  Button("No", role: .cancel, action: {
+                      sameSession.play = true
+                  })
+                  Button("Yes", role: .destructive, action: {
+                      sameSession.reset.toggle()
+                  })
+                })
             Button {
-                reset.toggle()
+                sameSession.play = false
+                alertCancel.toggle()
             }
             label: {
                 Image(systemName: "xmark")
@@ -43,6 +53,16 @@ struct sessionButtons: View {
                     .frame(width: 25, height: 25)
                     .font(.system(size: 25, weight: .bold))
             }
+            .alert("Cancel", isPresented: $alertCancel, actions: {
+                Button("No", role: .cancel, action: {
+                    sameSession.play = true
+                })
+                Button("Yes", role: .destructive, action: {
+                    print("Need to develop this feature")
+                })},
+                message: {
+                      Text("Are you sure you want to cancel the session?")
+                })
         }
     }
 }

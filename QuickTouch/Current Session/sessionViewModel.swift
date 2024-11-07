@@ -25,7 +25,6 @@ class sessionViewModel: ObservableObject {
     var initialSec : Int = 0
 
     func setTimertext(){
-   //     let minString = sessionMin < 10 ? "0\(sessionMin)" : "\(sessionMin)"
         let secString = sessionSec < 10 ? "0\(sessionSec)" : "\(sessionSec)"
         timerText = "\(sessionMin):\(secString)"
     }
@@ -39,9 +38,7 @@ class sessionViewModel: ObservableObject {
     func setupTimer() {
         let totalSeconds = Float(sessionMin * 60 + sessionSec)
         step = totalSeconds > 0 ? 1 / totalSeconds : 0
-        // Set the initial timer text
         setTimertext()
-        // Setup a timer publisher
         timerCancellable = Timer.publish(every: 1, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
@@ -49,7 +46,7 @@ class sessionViewModel: ObservableObject {
             }
     }
     
-    func decrementTime() {
+    func decrementTime(){
             if sessionSec > 0 {
                 sessionSec -= 1
             } else if sessionMin > 0 {
@@ -75,6 +72,9 @@ class sessionViewModel: ObservableObject {
                 self.endSession = true
             }
         }
+    }
+    func cancelSession(){
+        cancel = true
     }
     
     func setResetsession(){

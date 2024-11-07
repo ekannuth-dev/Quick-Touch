@@ -37,7 +37,7 @@ struct circularTimer : View {
                     .foregroundColor(.blue)
                     .bold()
             }
-            sessionButtons(play: $currentSession.play, reset: $currentSession.reset)
+            sessionButtons(sameSession: currentSession)
         }
         .padding(50)
         .navigationBarBackButtonHidden(true)

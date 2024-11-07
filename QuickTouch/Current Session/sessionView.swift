@@ -13,7 +13,6 @@ struct sessionView: View {
     var body: some View {
         NavigationStack {
             VStack {
-              //  sessionDraft.saveTime()
                 circularTimer(currentSession: sessionDraft)
             }.navigationDestination(isPresented: $sessionDraft.endSession){
                 endSessionView(lastSession: sessionDraft)

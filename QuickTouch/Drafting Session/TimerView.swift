@@ -28,8 +28,5 @@ struct TimerView: View {
         }
         .onChange(of: draftSession.sessionMin) { _ in draftSession.saveTime() }
         .onChange(of: draftSession.sessionSec) { _ in draftSession.saveTime() }
-//        let _ = print(draftSession.initialMin)
-//        let _ = print(
-        //       draftSession.saveTime()
     }
 }
