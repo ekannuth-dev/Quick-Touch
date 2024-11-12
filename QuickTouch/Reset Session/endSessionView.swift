@@ -18,7 +18,7 @@ struct endSessionView: View {
                     .font(.largeTitle)
                     .padding()
                 NavigationLink {
-                    draftView()
+                    draftView(draftModel: lastSession)
                 }
                 label: {
                     Text("Create a new Session?")

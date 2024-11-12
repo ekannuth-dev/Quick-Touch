@@ -10,6 +10,7 @@ import Observation
 
 
 struct mainView: View {
+    @StateObject var sessionModel = sessionViewModel()
     var body: some View {
         NavigationStack {
             VStack {
@@ -17,7 +18,7 @@ struct mainView: View {
                     .font(.largeTitle)
                     .padding()
                 NavigationLink {
-                    draftView()
+                    draftView(draftModel: sessionModel)
                 } label:
                 {
                     Text("Begin Session")
