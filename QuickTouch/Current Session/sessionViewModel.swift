@@ -28,17 +28,19 @@ class sessionViewModel: ObservableObject {
         let secString = sessionSec < 10 ? "0\(sessionSec)" : "\(sessionSec)"
         timerText = "\(sessionMin):\(secString)"
     }
+    
     func updateProgress(){
         progress += step
     }
+    
     func saveTime(){
         initialMin = sessionMin
         initialSec = sessionSec
     }
+    
     func setupTimer(){
         let totalSeconds = Float(sessionMin * 60 + sessionSec)
         step = totalSeconds > 0 ? 1 / totalSeconds : 0
-        print("this is your step \(step)")
         setTimertext()
         timerCancellable = Timer.publish(every: 1, on: .main, in: .common)
             .autoconnect()
@@ -48,7 +50,6 @@ class sessionViewModel: ObservableObject {
     }
     
     func decrementTime(){
-          //  print("sessionMin: \(sessionMin), sessionSec: \(sessionSec)")
             if sessionMin == 0 && sessionSec == 0 {
                 return // Safely exit if both minute and second are 0
             }

@@ -12,7 +12,6 @@ import SwiftUI
 struct endSessionView: View {
     @ObservedObject var lastSession: sessionViewModel
     var body: some View {
-        NavigationStack {
             VStack {
                 Text("Amazing Session")
                     .font(.largeTitle)
@@ -32,7 +31,6 @@ struct endSessionView: View {
                     Text("Restart the same session?")
                 }
             }
-        }
     }
 }
 

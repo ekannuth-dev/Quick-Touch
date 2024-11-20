@@ -45,10 +45,10 @@ struct draftView: View {
                         .padding()
                     }
                 }
-                .navigationBarBackButtonHidden(true)
-                .navigationTitle("Create Session")
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationTitle("Create Session")
     }
 }
 

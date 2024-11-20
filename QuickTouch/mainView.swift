@@ -12,7 +12,7 @@ import Observation
 struct mainView: View {
     @StateObject var sessionModel = sessionViewModel()
     var body: some View {
-        NavigationStack {
+        NavigationView {
             VStack {
                 Text("Quick Touch")
                     .font(.largeTitle)
@@ -25,6 +25,7 @@ struct mainView: View {
                 }
             }
         }
+ //       .navigationDestinat
     }
 }
 
