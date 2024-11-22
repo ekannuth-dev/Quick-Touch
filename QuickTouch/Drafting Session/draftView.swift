@@ -46,9 +46,9 @@ struct draftView: View {
                     }
                 }
             }
+            .navigationTitle("Create Session")
         }
         .navigationBarBackButtonHidden(true)
-        .navigationTitle("Create Session")
     }
 }
 

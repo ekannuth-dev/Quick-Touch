@@ -25,7 +25,6 @@ struct mainView: View {
                 }
             }
         }
- //       .navigationDestinat
     }
 }
 
