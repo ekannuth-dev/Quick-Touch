@@ -41,6 +41,7 @@ class sessionViewModel: ObservableObject {
     func setupTimer(){
         let totalSeconds = Float(sessionMin * 60 + sessionSec)
         step = totalSeconds > 0 ? 1 / totalSeconds : 0
+        progress = 0
         setTimertext()
         timerCancellable = Timer.publish(every: 1, on: .main, in: .common)
             .autoconnect()
@@ -89,8 +90,7 @@ class sessionViewModel: ObservableObject {
     func setResetsession(){
         sessionMin = initialMin
         sessionSec = initialSec
-        reset = false
-        setTimertext()
+        setupTimer()
     }
 }
 
