@@ -47,6 +47,7 @@ class sessionViewModel: ObservableObject {
             .autoconnect()
             .sink { [weak self] _ in
                 self?.onTimerTick()
+                print("test")
             }
     }
     
@@ -65,10 +66,7 @@ class sessionViewModel: ObservableObject {
     }
     
     private func onTimerTick(){
-            if reset {
-                progress = 0
-                setResetsession()
-            } else if play {
+            if play {
                 decrementTime()
                 checkCompletion()
             }
@@ -90,7 +88,6 @@ class sessionViewModel: ObservableObject {
     func setResetsession(){
         sessionMin = initialMin
         sessionSec = initialSec
-        setupTimer()
     }
 }
 
