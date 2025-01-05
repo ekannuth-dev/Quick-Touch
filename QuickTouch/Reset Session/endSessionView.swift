@@ -17,19 +17,13 @@ struct endSessionView: View {
                 Text("Amazing Session")
                     .font(.largeTitle)
                     .padding()
-//                NavigationLink {
-//                    draftView(draftModel: lastSession)
-//                }
-//                label: {
-//                    Text("Create a new Session?")
-//                }
-//                .padding()
                 Button(action: {
                             lastSession.setResetsession()
                             changeSession = true
                         }) {
-                            Text("Restart the same session?")
+                            Text("Restart same session?")
                         }
+                Text("Create a new session?")
             }
             .navigationDestination(isPresented: $changeSession){
                 sessionView(sessionDraft: lastSession)

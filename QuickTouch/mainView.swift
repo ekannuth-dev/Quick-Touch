@@ -12,7 +12,7 @@ import Observation
 struct mainView: View {
     @StateObject var sessionModel = sessionViewModel()
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 Text("Quick Touch")
                     .font(.largeTitle)

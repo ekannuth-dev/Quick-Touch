@@ -26,9 +26,7 @@ struct circularTimer : View {
                         .foregroundColor(.blue)
                         .rotationEffect(.degrees(-90.0))
                         .shadow(radius: 2)
-                        .animation(currentSession.progress == 0
-                                                           ? .linear(duration: 2.0) // Slower reset animation
-                                                           : .linear(duration: 1.0), // Normal countdown animation
+                        .animation(.linear(duration: 1.0), // Normal countdown animation
                                                            value: currentSession.progress)
                 }
                 .frame(width: 330, height: 330)
