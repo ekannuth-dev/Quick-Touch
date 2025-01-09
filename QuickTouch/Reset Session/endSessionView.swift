@@ -23,6 +23,7 @@ struct endSessionView: View {
                         }) {
                             Text("Restart same session?")
                         }
+                        .padding()
                 Text("Create a new session?")
             }
             .navigationDestination(isPresented: $changeSession){

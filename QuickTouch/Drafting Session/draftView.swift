@@ -11,17 +11,28 @@ import SwiftUI
 
 struct draftView: View {
     @ObservedObject var draftModel: sessionViewModel
-    @State private var path : [any View] = []
+    @State private var start : Bool = false
     var body: some View {
-        NavigationStack(path: <#T##Binding<NavigationPath>#>) {
             VStack {
                 Form {
-//                    path.append(TimerView(draftSession: draftModel))
                     Section {
                         HStack{
-                            NavigationLink {
-                                sessionView(sessionDraft: draftModel)
-                            } label:
+                            TimerView(draftSession: draftModel)
+                        }
+                    }
+                    Section{
+                        HStack{
+                            Text("Interval Seconds:")
+                            TextField("Enter Seconds", value: $draftModel.sessionInterval, formatter: NumberFormatter())
+                                .frame(height: 50)
+                        }
+                    }
+                    Section {
+                        HStack {
+                            Button {
+                                start.toggle()
+                            }
+                            label:
                             {
                                 Text("Start Session")
                             }
@@ -36,10 +47,12 @@ struct draftView: View {
                     }
                 }
             }
+            .navigationTitle("Create Session")
+            .navigationBarBackButtonHidden(true)
+            .navigationDestination(isPresented: $start){
+                sessionView(sessionDraft: draftModel)
+            }
         }
-        .navigationTitle("Create Session")
-        .navigationBarBackButtonHidden(true)
-    }
 }
 
 
