@@ -18,7 +18,7 @@ struct endSessionView: View {
                     .font(.largeTitle)
                     .padding()
                 Button(action: {
-                            lastSession.setResetsession()
+                            lastSession.resetSession()
                             changeSession = true
                         }) {
                             Text("Restart same session?")

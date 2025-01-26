@@ -86,9 +86,10 @@ class sessionViewModel: ObservableObject {
         cancel = true
     }
     
-    func setResetsession(){
+    func resetSession(){
         sessionMin = initialMin
         sessionSec = initialSec
+        setupTimer()
     }
 }
 

@@ -56,6 +56,7 @@ struct draftView: View {
 }
 
 
-//#Preview {
-//    draftView(draftModel: <#T##sessionViewModel#>())
-//}
+#Preview {
+    let mockModel = sessionViewModel() // Create a mock model with sample data
+    draftView(draftModel: mockModel) // Pass the mock model to the view
+}

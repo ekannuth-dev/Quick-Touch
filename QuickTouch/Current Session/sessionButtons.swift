@@ -40,7 +40,7 @@ struct sessionButtons: View {
                       sameSession.play = true
                   })
                   Button("Yes", role: .destructive, action: {
-                      sameSession.reset.toggle()
+                      sameSession.resetSession()
                   })
                 })
             Button {
