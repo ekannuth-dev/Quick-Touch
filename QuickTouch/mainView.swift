@@ -12,16 +12,14 @@ import Observation
 struct mainView: View {
     @StateObject var sessionModel = sessionViewModel()
     var body: some View {
-        NavigationStack {
+        NavigationView {
             VStack {
                 Text("Quick Touch")
                     .font(.largeTitle)
                     .padding()
-                NavigationLink {
+                NavigationLink("Begin Session"){
                     draftView(draftModel: sessionModel)
-                } label:
-                {
-                    Text("Begin Session")
+                        .navigationBarBackButtonHidden(true)
                 }
             }
         }

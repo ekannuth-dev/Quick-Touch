@@ -49,7 +49,7 @@ struct sessionButtons: View {
             }
             label: {
                 Image(systemName: "xmark")
-                    .resizable()               // Make the image resizable
+                    .resizable()
                     .frame(width: 25, height: 25)
                     .font(.system(size: 25, weight: .bold))
             }

@@ -10,9 +10,11 @@ import SwiftUI
 
 
 struct draftView: View {
-    @ObservedObject var draftModel: sessionViewModel
+    @StateObject var draftModel = sessionViewModel()
     @State private var start : Bool = false
+    @State private var path = NavigationPath()
     var body: some View {
+        NavigationStack(path: $path){
             VStack {
                 Form {
                     Section {
@@ -29,12 +31,8 @@ struct draftView: View {
                     }
                     Section {
                         HStack {
-                            Button {
-                                start.toggle()
-                            }
-                            label:
-                            {
-                                Text("Start Session")
+                            Button("Start Session"){
+                                path.append(Destination.sessionView)
                             }
                             .padding()
                             .background(Color.blue)
@@ -49,10 +47,11 @@ struct draftView: View {
             }
             .navigationTitle("Create Session")
             .navigationBarBackButtonHidden(true)
-            .navigationDestination(isPresented: $start){
-                sessionView(sessionDraft: draftModel)
+            .navigationDestination(for: Destination.self){_ in
+                sessionView(sessionDraft: draftModel, path: $path)
             }
         }
+    }
 }
 
 

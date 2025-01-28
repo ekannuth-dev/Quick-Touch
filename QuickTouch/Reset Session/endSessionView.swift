@@ -12,6 +12,7 @@ import SwiftUI
 struct endSessionView: View {
     @ObservedObject var lastSession: sessionViewModel
     @State private var changeSession = false
+    @Binding var path: NavigationPath
     var body: some View {
             VStack {
                 Text("Amazing Session")
@@ -27,14 +28,14 @@ struct endSessionView: View {
                 Text("Create a new session?")
             }
             .navigationDestination(isPresented: $changeSession){
-                sessionView(sessionDraft: lastSession)
-                .navigationBarBackButtonHidden(true)
+            //    sessionView(sessionDraft: lastSession)
+               // .navigationBarBackButtonHidden(true)
             }
     }
 }
 
-#Preview {
-    endSessionView(lastSession: sessionViewModel())
-}
+//#Preview {
+//    endSessionView(lastSession: sessionViewModel())
+//}
 
 

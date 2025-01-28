@@ -48,7 +48,8 @@ class sessionViewModel: ObservableObject {
             .autoconnect()
             .sink { [weak self] _ in
                 self?.onTimerTick()
-                print("test")
+                print("timer starts")
+                print(self?.initialMin)
             }
     }
     
@@ -56,11 +57,12 @@ class sessionViewModel: ObservableObject {
             if sessionMin == 0 && sessionSec == 0 {
                 return // Safely exit if both minute and second are 0
             }
-            if sessionSec > 0 {
-                sessionSec -= 1
-            } else if sessionMin > 0 {
+            else if sessionMin > 0 {
                 sessionMin -= 1
                 sessionSec = 59
+            }
+            else if sessionSec > 0 {
+                sessionSec -= 1
             }
             setTimertext()
             updateProgress()
