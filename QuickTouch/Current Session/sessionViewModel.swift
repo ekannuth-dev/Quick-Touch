@@ -37,6 +37,7 @@ class sessionViewModel: ObservableObject {
     func saveTime(){
         initialMin = sessionMin
         initialSec = sessionSec
+        let _ = print("saveTime has been called")
     }
     
     func setupTimer(){
@@ -49,7 +50,6 @@ class sessionViewModel: ObservableObject {
             .sink { [weak self] _ in
                 self?.onTimerTick()
                 print("timer starts")
-                print(self?.initialMin)
             }
     }
     
