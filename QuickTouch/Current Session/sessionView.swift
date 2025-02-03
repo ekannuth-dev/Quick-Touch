@@ -10,16 +10,12 @@ import SwiftUI
 
 struct sessionView: View {
     @ObservedObject var sessionDraft: sessionViewModel
-    @Binding var path: NavigationPath
     var body: some View {
-            VStack {
-                circularTimer(currentSession: sessionDraft)
-            }
-            .onChange(of: sessionDraft.endSession) {
-                    path.append(Destination.endSessionView)
-            }
-        .navigationDestination(for: Destination.self) {_ in
-            endSessionView(lastSession: sessionDraft, path: $path)
+        VStack {
+            circularTimer(currentSession: sessionDraft)
+        }
+        .navigationDestination(isPresented: $sessionDraft.endSession){
+            endSessionView(lastSession: sessionDraft)
         }
     }
 }

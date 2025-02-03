@@ -17,6 +17,8 @@ class sessionViewModel: ObservableObject {
     @Published var reset : Bool = false
     @Published var play : Bool = true
     @Published var cancel : Bool = false
+    @Published var draftSession : Bool = false
+    @Published var startSession : Bool = false
     @Published var endSession : Bool = false
     @Published var timerText: String = ""
     @Published var progress: Float = 0.0
@@ -24,7 +26,7 @@ class sessionViewModel: ObservableObject {
     var step: Float = 0.0
     var initialMin : Int = 0
     var initialSec : Int = 0
-
+    
     func setTimertext(){
         let secString = sessionSec < 10 ? "0\(sessionSec)" : "\(sessionSec)"
         timerText = "\(sessionMin):\(secString)"
@@ -37,7 +39,6 @@ class sessionViewModel: ObservableObject {
     func saveTime(){
         initialMin = sessionMin
         initialSec = sessionSec
-        let _ = print("saveTime has been called")
     }
     
     func setupTimer(){
@@ -49,30 +50,29 @@ class sessionViewModel: ObservableObject {
             .autoconnect()
             .sink { [weak self] _ in
                 self?.onTimerTick()
-                print("timer starts")
             }
     }
     
     func decrementTime(){
-            if sessionMin == 0 && sessionSec == 0 {
-                return // Safely exit if both minute and second are 0
-            }
-            else if sessionMin > 0 {
-                sessionMin -= 1
-                sessionSec = 59
-            }
-            else if sessionSec > 0 {
-                sessionSec -= 1
-            }
-            setTimertext()
-            updateProgress()
+        if sessionMin == 0 && sessionSec == 0 {
+            return // Safely exit if both minute and second are 0
+        }
+        else if sessionMin > 0 {
+            sessionMin -= 1
+            sessionSec = 59
+        }
+        else if sessionSec > 0 {
+            sessionSec -= 1
+        }
+        setTimertext()
+        updateProgress()
     }
     
     private func onTimerTick(){
-            if play {
-                decrementTime()
-                checkCompletion()
-            }
+        if play {
+            decrementTime()
+            checkCompletion()
+        }
     }
     
     func checkCompletion(){
@@ -91,7 +91,30 @@ class sessionViewModel: ObservableObject {
     func resetSession(){
         sessionMin = initialMin
         sessionSec = initialSec
+        endSession = false
+        play = false
         setupTimer()
+    }
+    
+    func resetModel() {
+        sessionMin = 0
+        sessionSec = 0
+        sessionInterval = 0
+        reset = false
+        play = true
+        cancel = false
+        draftSession = false
+        startSession = false
+        endSession  = false
+        timerText = ""
+        progress = 0.0
+        timerCancellable?.cancel()
+        timerCancellable = nil
+    }
+    
+    
+    func makeSession(){
+        resetModel()
     }
 }
 

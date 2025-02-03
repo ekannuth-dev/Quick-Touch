@@ -13,7 +13,6 @@
 		340E40102C88EF330064A8ED /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 340E400F2C88EF330064A8ED /* Preview Assets.xcassets */; };
 		340E40172C8BD5FD0064A8ED /* draftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340E40162C8BD5FD0064A8ED /* draftView.swift */; };
 		340E401B2C934BA30064A8ED /* sessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340E401A2C934BA30064A8ED /* sessionViewModel.swift */; };
-		347D6F4C2D483F37006C9B48 /* navigationDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D6F4B2D483F2E006C9B48 /* navigationDestination.swift */; };
 		34D894D82CA46120007E774E /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D894D72CA46120007E774E /* TimerView.swift */; };
 		34D894DA2CA7399B007E774E /* sessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D894D92CA7399B007E774E /* sessionView.swift */; };
 		34D894DE2CAB73B3007E774E /* circularTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D894DD2CAB73B3007E774E /* circularTimerView.swift */; };
@@ -29,7 +28,6 @@
 		340E400F2C88EF330064A8ED /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		340E40162C8BD5FD0064A8ED /* draftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = draftView.swift; sourceTree = "<group>"; };
 		340E401A2C934BA30064A8ED /* sessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sessionViewModel.swift; sourceTree = "<group>"; };
-		347D6F4B2D483F2E006C9B48 /* navigationDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = navigationDestination.swift; sourceTree = "<group>"; };
 		34D894D72CA46120007E774E /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		34D894D92CA7399B007E774E /* sessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sessionView.swift; sourceTree = "<group>"; };
 		34D894DD2CAB73B3007E774E /* circularTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = circularTimerView.swift; sourceTree = "<group>"; };
@@ -69,7 +67,6 @@
 			children = (
 				340E40082C88EF310064A8ED /* QuickTouchApp.swift */,
 				340E400A2C88EF310064A8ED /* mainView.swift */,
-				347D6F4B2D483F2E006C9B48 /* navigationDestination.swift */,
 				34EF01CB2CC5D13800F7451B /* Drafting Session */,
 				34EF01CC2CC5D18B00F7451B /* Current Session */,
 				34EF01CD2CC5D29900F7451B /* Reset Session */,
@@ -185,7 +182,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				347D6F4C2D483F37006C9B48 /* navigationDestination.swift in Sources */,
 				34D894D82CA46120007E774E /* TimerView.swift in Sources */,
 				34D894DA2CA7399B007E774E /* sessionView.swift in Sources */,
 				34D894DE2CAB73B3007E774E /* circularTimerView.swift in Sources */,
