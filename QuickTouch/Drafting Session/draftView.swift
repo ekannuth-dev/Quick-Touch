@@ -34,7 +34,7 @@ struct draftView: View {
                                 draftModel.startSession = true
                             }
                             .padding()
-                            .background(Color.orange)
+                            .background(Color.red)
                             .foregroundColor(.white)
                             .clipShape(Capsule())
                         }

@@ -26,14 +26,14 @@ class sessionViewModel: ObservableObject {
     var step: Float = 0.0
     var initialMin : Int = 0
     var initialSec : Int = 0
-    
+    private var tickCount = 0
     func setTimertext(){
         let secString = sessionSec < 10 ? "0\(sessionSec)" : "\(sessionSec)"
         timerText = "\(sessionMin):\(secString)"
     }
     
     func updateProgress(){
-        progress += step
+        progress += (step / 10)
     }
     
     func saveTime(){
@@ -46,7 +46,7 @@ class sessionViewModel: ObservableObject {
         step = totalSeconds > 0 ? 1 / totalSeconds : 0
         progress = 0
         setTimertext()
-        timerCancellable = Timer.publish(every: 1, on: .main, in: .common)
+        timerCancellable = Timer.publish(every: 0.1, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
                 self?.onTimerTick()
@@ -57,28 +57,32 @@ class sessionViewModel: ObservableObject {
         if sessionMin == 0 && sessionSec == 0 {
             return // Safely exit if both minute and second are 0
         }
+        else if sessionSec > 0 {
+            sessionSec -= 1
+        }
         else if sessionMin > 0 {
             sessionMin -= 1
             sessionSec = 59
         }
-        else if sessionSec > 0 {
-            sessionSec -= 1
-        }
         setTimertext()
-        updateProgress()
     }
     
     private func onTimerTick(){
         if play {
-            decrementTime()
-            checkCompletion()
+            tickCount += 1
+            if tickCount == 10 {
+                tickCount = 0
+                decrementTime()
+                checkCompletion()
+            }
+            updateProgress()
         }
     }
     
     func checkCompletion(){
         if sessionMin == 0 && sessionSec == 0 {
             timerCancellable?.cancel()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){
                 self.endSession = true
             }
         }
@@ -96,7 +100,7 @@ class sessionViewModel: ObservableObject {
         setupTimer()
     }
     
-    func resetModel() {
+    func resetModel(){
         sessionMin = 0
         sessionSec = 0
         sessionInterval = 0

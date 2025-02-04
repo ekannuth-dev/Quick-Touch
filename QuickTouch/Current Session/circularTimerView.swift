@@ -19,20 +19,19 @@ struct circularTimer : View {
                 ZStack {
                     Circle()
                         .stroke(lineWidth: 20)
-                        .foregroundColor(.orange.opacity(0.4))
+                        .foregroundColor(.red.opacity(0.4))
                     Circle()
                         .trim(from: 0.0, to: CGFloat(1 - currentSession.progress))
                         .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round))
-                        .foregroundColor(.orange)
+                        .foregroundColor(.red)
                         .rotationEffect(.degrees(-90.0))
                         .shadow(radius: 2)
-                        .animation(.linear(duration: 1.0), // Normal countdown animation
-                                                           value: currentSession.progress)
+                        .animation(.linear(duration: 1.0),value: currentSession.progress)
                 }
                 .frame(width: 330, height: 330)
                 Text(currentSession.timerText)
                     .font(.system(size: 100))
-                    .foregroundColor(.orange)
+                    .foregroundColor(.red)
                     .bold()
             }
             sessionButtons(sameSession: currentSession)
@@ -40,12 +39,7 @@ struct circularTimer : View {
         .padding(50)
         .navigationBarBackButtonHidden(true)
         .onAppear {
-            if currentSession.progress == 0 && !currentSession.endSession {
-                print("Starting Timer in circularTimer")
-                currentSession.setupTimer()
-            } else {
-                print("Not restarting timer - endSession: \(currentSession.endSession)")
-            }
+            currentSession.setupTimer()
         }
     }
 }
