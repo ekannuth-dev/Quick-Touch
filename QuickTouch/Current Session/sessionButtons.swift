@@ -20,9 +20,9 @@ struct sessionButtons: View {
             }
             label: {
                 Image(systemName:  sameSession.play ? "pause.fill" : "play.fill")
-                    .resizable()               // Make the image resizable
+                    .resizable()
                     .frame(width: 25, height: 25)
-                    .foregroundColor(.orange)
+                    .foregroundColor(.red)
             }
             .padding()
             Button {
@@ -34,7 +34,7 @@ struct sessionButtons: View {
                     .resizable()               // Make the image resizable
                     .frame(width: 25, height: 25)
                     .font(.system(size: 25, weight: .bold))
-                    .foregroundColor(.orange)
+                    .foregroundColor(.red)
             }
             .padding()
             .alert("Do you want to restart the session?", isPresented: $alertReset, actions: {
@@ -54,7 +54,7 @@ struct sessionButtons: View {
                     .resizable()
                     .frame(width: 25, height: 25)
                     .font(.system(size: 25, weight: .bold))
-                    .foregroundColor(.orange)
+                    .foregroundColor(.red)
             }
             .alert("Are you sure you want to cancel the session?", isPresented: $alertCancel, actions: {
                 Button("Yes", role: .destructive, action: {
