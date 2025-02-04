@@ -78,7 +78,7 @@ class sessionViewModel: ObservableObject {
     func checkCompletion(){
         if sessionMin == 0 && sessionSec == 0 {
             timerCancellable?.cancel()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
                 self.endSession = true
             }
         }
