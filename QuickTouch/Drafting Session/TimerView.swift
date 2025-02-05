@@ -11,7 +11,7 @@ import SwiftUI
 struct TimerView: View {
     @ObservedObject var draftSession: sessionViewModel
     var body: some View {
-        HStack{
+        HStack {
             Picker("Select Timer", selection: $draftSession.sessionMin){
                 ForEach(0...59, id: \.self) {num in
                     Text("\(num)")
