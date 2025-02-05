@@ -38,13 +38,13 @@ struct sessionButtons: View {
             }
             .padding()
             .alert("Do you want to restart the session?", isPresented: $alertReset, actions: {
-                  Button("No", role: .cancel, action: {
-                      sameSession.play = true
-                  })
-                  Button("Yes", role: .destructive, action: {
-                      sameSession.resetSession()
-                  })
-                })
+                Button("Continue", role: .cancel) {
+                    sameSession.play = true
+                }
+                Button("Restart", role: .destructive) {
+                    sameSession.resetSession()
+                }
+            })
             Button {
                 sameSession.play = false
                 alertCancel.toggle()
@@ -56,13 +56,13 @@ struct sessionButtons: View {
                     .font(.system(size: 25, weight: .bold))
                     .foregroundColor(.red)
             }
-            .alert("Are you sure you want to cancel the session?", isPresented: $alertCancel, actions: {
-                Button("Yes", role: .destructive, action: {
-                    sameSession.makeSession()
-                })
-                Button("No", role: .cancel, action: {
+            .alert("Do you want to cancel the session?", isPresented: $alertCancel, actions: {
+                Button("Continue", role: .cancel){
                     sameSession.play = true
-                })
+                }
+                Button("Cancel", role: .destructive){
+                    sameSession.makeSession()
+                }
             })
         }
     }

@@ -11,7 +11,7 @@ import SwiftUI
 
 struct draftView: View {
     @ObservedObject var draftModel : sessionViewModel
-    @State private var start : Bool = false
+    @State private var showAlert = false
     var body: some View {
         NavigationStack(){
             VStack {
@@ -31,12 +31,22 @@ struct draftView: View {
                     Section {
                         HStack {
                             Button("Start Session"){
-                                draftModel.startSession = true
+                                if draftModel.sessionMin == 0 && draftModel.sessionSec == 0 {
+                                    showAlert = true
+                                }
+                                else {
+                                    draftModel.startSession = true
+                                }
                             }
                             .padding()
                             .background(Color.red)
                             .foregroundColor(.white)
                             .clipShape(Capsule())
+                            .alert("Invalid Time", isPresented: $showAlert){
+                                Button("OK", role: .cancel){}
+                            } message: {
+                                Text("Please select a valid time greater than 0.")
+                            }
                         }
                         .frame(maxWidth: .infinity)
                         .buttonStyle(PlainButtonStyle())
