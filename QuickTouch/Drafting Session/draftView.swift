@@ -42,7 +42,7 @@ struct draftView: View {
                             .background(Color.red)
                             .foregroundColor(.white)
                             .clipShape(Capsule())
-                            .alert("Invalid Time", isPresented: $showAlert) {
+                            .alert("Invalid Time", isPresented: $showAlert){
                                 Button("OK", role: .cancel){}
                             } message: {
                                 Text("Please select a valid time greater than 0.")
