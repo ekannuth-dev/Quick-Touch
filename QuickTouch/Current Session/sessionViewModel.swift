@@ -21,6 +21,7 @@ class sessionViewModel: ObservableObject {
     @Published var startSession : Bool = false
     @Published var endSession : Bool = false
     @Published var timerText: String = ""
+    @Published var intervalColor : [Color] = []
     @Published var progress: Float = 0.0
     @Published var timerCancellable: AnyCancellable?
     var step: Float = 0.0

@@ -12,6 +12,7 @@ import SwiftUI
 struct draftView: View {
     @ObservedObject var draftModel : sessionViewModel
     @State private var showAlert = false
+    @State private var isIntervalSession = false
     var body: some View {
         NavigationStack(){
             VStack {
@@ -22,12 +23,13 @@ struct draftView: View {
                         }
                     }
                     Section {
-                        HStack{
-                            Text("Interval Seconds:")
-                            TextField("Enter Seconds", value: $draftModel.sessionInterval, formatter: NumberFormatter())
-                                .frame(height: 50)
-                        }
+                        Toggle("Enable Interval Session", isOn: $isIntervalSession)
                     }
+                    
+                    if isIntervalSession {
+                        intervalView(draftModel: draftModel)
+                    }
+                    
                     Section {
                         HStack {
                             Button("Start Session"){
