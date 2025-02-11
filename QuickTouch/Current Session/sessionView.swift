@@ -11,16 +11,14 @@ import SwiftUI
 struct sessionView: View {
     @ObservedObject var sessionDraft: sessionViewModel
     var body: some View {
-        VStack {
             circularTimer(currentSession: sessionDraft)
-        }
-        .navigationDestination(isPresented: $sessionDraft.endSession){
-            endSessionView(lastSession: sessionDraft)
-        }
+            .navigationDestination(isPresented: $sessionDraft.endSession){
+                endSessionView(lastSession: sessionDraft)
+            }
     }
 }
 
-//#Preview {
-//    sessionView(sessionDraft: sessionViewModel())
-//}
+#Preview {
+   sessionView(sessionDraft: sessionViewModel())
+}
 

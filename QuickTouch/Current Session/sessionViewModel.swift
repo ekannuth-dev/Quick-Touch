@@ -13,7 +13,7 @@ import SwiftUI
 class sessionViewModel: ObservableObject {
     @Published var sessionMin : Int = 0
     @Published var sessionSec : Int = 0
-    @Published var sessionInterval : Int = 0
+    @Published var sessionInterval : Double = 0
     @Published var reset : Bool = false
     @Published var play : Bool = true
     @Published var cancel : Bool = false
@@ -22,8 +22,11 @@ class sessionViewModel: ObservableObject {
     @Published var endSession : Bool = false
     @Published var timerText: String = ""
     @Published var intervalColor : [Color] = []
+    @Published var isIntervalSession = false
     @Published var progress: Float = 0.0
     @Published var timerCancellable: AnyCancellable?
+    @Published var timerAlert = false
+    @Published var colorAlert = false
     var step: Float = 0.0
     var initialMin : Int = 0
     var initialSec : Int = 0
@@ -115,6 +118,18 @@ class sessionViewModel: ObservableObject {
         progress = 0.0
         timerCancellable?.cancel()
         timerCancellable = nil
+    }
+    
+    func draftAlert(){
+        if sessionMin == 0 && sessionSec == 0 {
+            timerAlert = true
+        }
+        else if isIntervalSession, intervalColor.count < 2 {
+            colorAlert = true
+        }
+        else {
+            startSession = true
+        }
     }
     
     
