@@ -37,45 +37,47 @@ import SwiftUI
 
 
 import SwiftUI
+import Combine
 
 struct FullScreenOverlay: View {
     @ObservedObject var currentSession: sessionViewModel
     @State private var currentIndex = 0
-    @State private var timer: Timer?
+    @State private var timerCancellable: AnyCancellable?
 
     var body: some View {
         ZStack {
             if currentSession.isIntervalSession, !currentSession.intervalColor.isEmpty {
-                currentSession.intervalColor[currentIndex] // ✅ Cycles through colors
+                currentSession.intervalColor[currentIndex]
                     .ignoresSafeArea()
-                    .animation(.easeInOut(duration: 0.5), value: currentIndex) // ✅ Smooth transition
             } else {
-                Color.clear.ignoresSafeArea() // ✅ Default background
+                Color.clear.ignoresSafeArea()
             }
         }
         .onAppear {
-            startLoopingColors() // ✅ Start timer when view appears
+            startLoopingColors() // ✅ Start precise timer
         }
         .onDisappear {
-            stopTimer() // ✅ Stop timer when view disappears
+            stopTimer() // ✅ Stop timer when leaving view
         }
     }
 
-    /// ✅ Starts the looping timer with `sessionInterval`
+    /// ✅ Starts a precise timer that fires at exactly `sessionInterval` seconds
     private func startLoopingColors() {
-        stopTimer() // ✅ Ensure only one timer runs at a time
+        stopTimer() // ✅ Prevent multiple timers from stacking
         guard !currentSession.intervalColor.isEmpty else { return }
 
-        timer = Timer.scheduledTimer(withTimeInterval: Double(currentSession.sessionInterval), repeats: true) { _ in
-            withAnimation {
-                currentIndex = (currentIndex + 1) % currentSession.intervalColor.count // ✅ Circular looping
+        // ✅ Timer fires every `sessionInterval` seconds
+        timerCancellable = Timer.publish(every: max(1.0, Double(currentSession.sessionInterval)), on: .main, in: .common)
+            .autoconnect()
+            .receive(on: DispatchQueue.main) // ✅ Ensure it updates the UI correctly
+            .sink { _ in
+                currentIndex = (currentIndex + 1) % currentSession.intervalColor.count
             }
-        }
     }
 
-    /// ✅ Stops the timer when leaving the view
+    /// ✅ Stops the timer safely
     private func stopTimer() {
-        timer?.invalidate()
-        timer = nil
+        timerCancellable?.cancel()
+        timerCancellable = nil
     }
 }
