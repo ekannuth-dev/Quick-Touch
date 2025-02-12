@@ -13,7 +13,7 @@ import SwiftUI
 class sessionViewModel: ObservableObject {
     @Published var sessionMin : Int = 0
     @Published var sessionSec : Int = 0
-    @Published var sessionInterval : Double = 0
+    @Published var sessionInterval : Int = 0
     @Published var reset : Bool = false
     @Published var play : Bool = true
     @Published var cancel : Bool = false

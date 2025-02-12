@@ -9,31 +9,73 @@ import SwiftUI
 
 import SwiftUI
 
+//struct FullScreenOverlay: View {
+//    @ObservedObject var currentSession: sessionViewModel
+//    @State private var currentIndex = 0
+//
+//    var body: some View {
+//        ZStack {
+//            if currentSession.isIntervalSession {
+//                currentSession.intervalColor[currentIndex] // ✅ Cycles through colors
+//                    .ignoresSafeArea()
+//            } else {
+//                Color.clear.ignoresSafeArea() // Default state
+//            }
+//        }
+//        .onAppear {
+//            startLoopingColors()
+//        }
+//    }
+//
+//    private func startLoopingColors() {
+//        guard !currentSession.intervalColor.isEmpty else { return }
+//        Timer.scheduledTimer(withTimeInterval: Double(currentSession.sessionInterval), repeats: true) { _ in
+//                currentIndex = (currentIndex + 1) % currentSession.intervalColor.count
+//        }
+//    }
+//}
+
+
+import SwiftUI
+
 struct FullScreenOverlay: View {
     @ObservedObject var currentSession: sessionViewModel
-    @State private var currentIndex = 0 // ✅ Keeps track of the current color index
+    @State private var currentIndex = 0
+    @State private var timer: Timer?
 
     var body: some View {
         ZStack {
-            if currentSession.isIntervalSession {
+            if currentSession.isIntervalSession, !currentSession.intervalColor.isEmpty {
                 currentSession.intervalColor[currentIndex] // ✅ Cycles through colors
                     .ignoresSafeArea()
-              //      .animation(.easeInOut(duration: 1), value: currentIndex) // Smooth transition
+                    .animation(.easeInOut(duration: 0.5), value: currentIndex) // ✅ Smooth transition
             } else {
-                Color.clear.ignoresSafeArea() // Default state
+                Color.clear.ignoresSafeArea() // ✅ Default background
             }
         }
         .onAppear {
-            startLoopingColors()
+            startLoopingColors() // ✅ Start timer when view appears
+        }
+        .onDisappear {
+            stopTimer() // ✅ Stop timer when view disappears
         }
     }
 
-    // ✅ Loops through the colors every 2 seconds
+    /// ✅ Starts the looping timer with `sessionInterval`
     private func startLoopingColors() {
-        guard !currentSession.intervalColor.isEmpty else { return } // Prevent crash
+        stopTimer() // ✅ Ensure only one timer runs at a time
+        guard !currentSession.intervalColor.isEmpty else { return }
 
-        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-                currentIndex = (currentIndex + 1) % currentSession.intervalColor.count // ✅ Loops back to start
+        timer = Timer.scheduledTimer(withTimeInterval: Double(currentSession.sessionInterval), repeats: true) { _ in
+            withAnimation {
+                currentIndex = (currentIndex + 1) % currentSession.intervalColor.count // ✅ Circular looping
+            }
         }
+    }
+
+    /// ✅ Stops the timer when leaving the view
+    private func stopTimer() {
+        timer?.invalidate()
+        timer = nil
     }
 }
