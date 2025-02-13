@@ -14,29 +14,32 @@ import Combine
 struct circularTimer : View {
     @ObservedObject var currentSession: sessionViewModel
     var body: some View {
-        VStack {
-            ZStack {
+        ZStack {
+            VStack {
                 ZStack {
-                    Circle()
-                        .stroke(lineWidth: 20)
-                        .foregroundColor(.red.opacity(0.4))
-                    Circle()
-                        .trim(from: 0.0, to: CGFloat(1 - currentSession.progress))
-                        .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round))
-                        .foregroundColor(.red)
-                        .rotationEffect(.degrees(-90.0))
-                        .shadow(radius: 2)
-                        .animation(.linear(duration: 1.0),value: currentSession.progress)
+                    ZStack {
+                        Circle()
+                            .stroke(lineWidth: 20)
+                            .foregroundColor(.blue.opacity(0.4))
+                        Circle()
+                            .trim(from: 0.0, to: CGFloat(1 - currentSession.progress))
+                            .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round))
+                            .foregroundColor(.blue)
+                            .rotationEffect(.degrees(-90.0))
+                            .shadow(radius: 2)
+                            .animation(.linear(duration: 1.0),value: currentSession.progress)
+                    }
+                    .frame(width: 330, height: 330)
+                    Text(currentSession.timerText)
+                        .font(.system(size: 100))
+                        .foregroundColor(.blue)
+                        .bold()
                 }
-                .frame(width: 330, height: 330)
-                Text(currentSession.timerText)
-                    .font(.system(size: 100))
-                    .foregroundColor(.red)
-                    .bold()
+                sessionButtons(sameSession: currentSession)
             }
-            sessionButtons(sameSession: currentSession)
+            .padding(50)
+            FullScreenOverlay(currentSession: currentSession)
         }
-        .padding(50)
         .navigationBarBackButtonHidden(true)
         .onAppear {
             currentSession.setupTimer()

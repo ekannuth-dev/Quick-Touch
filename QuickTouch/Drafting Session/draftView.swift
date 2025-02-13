@@ -11,41 +11,41 @@ import SwiftUI
 
 struct draftView: View {
     @ObservedObject var draftModel : sessionViewModel
-    @State private var showAlert = false
     var body: some View {
         NavigationStack(){
             VStack {
                 Form {
                     Section {
-                        HStack{
+                        HStack {
                             TimerView(draftSession: draftModel)
                         }
                     }
                     Section {
-                        HStack{
-                            Text("Interval Seconds:")
-                            TextField("Enter Seconds", value: $draftModel.sessionInterval, formatter: NumberFormatter())
-                                .frame(height: 50)
-                        }
+                        Toggle("Enable Interval Session", isOn: $draftModel.isIntervalSession)
                     }
+                    
+                    if draftModel.isIntervalSession {
+                        intervalView(draftModel: draftModel)
+                    }
+                    
                     Section {
                         HStack {
                             Button("Start Session"){
-                                if draftModel.sessionMin == 0 && draftModel.sessionSec == 0 {
-                                    showAlert = true
-                                }
-                                else {
-                                    draftModel.startSession = true
-                                }
+                                draftModel.draftAlert()
                             }
                             .padding()
-                            .background(Color.red)
+                            .background(Color.blue)
                             .foregroundColor(.white)
                             .clipShape(Capsule())
-                            .alert("Invalid Time", isPresented: $showAlert){
+                            .alert("Invalid Time", isPresented: $draftModel.timerAlert){
                                 Button("OK", role: .cancel){}
                             } message: {
                                 Text("Please select a valid time greater than 0.")
+                            }
+                            .alert("Invalid Color Selection", isPresented: $draftModel.colorAlert){
+                                Button("OK", role: .cancel){}
+                            } message: {
+                                Text("Please select at least two colors")
                             }
                         }
                         .frame(maxWidth: .infinity)
