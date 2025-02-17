@@ -34,10 +34,11 @@ class sessionViewModel: ObservableObject {
     @Published var timerCancellable: AnyCancellable?
     @Published var timerAlert = false
     @Published var colorAlert = false
-    var step: Float = 0.0
-    var initialMin : Int = 0
-    var initialSec : Int = 0
+    private var initialMin : Int = 0
+    private var initialSec : Int = 0
+    private var step: Float = 0.0
     private var tickCount = 0
+    
     func setTimertext(){
         let secString = sessionSec < 10 ? "0\(sessionSec)" : "\(sessionSec)"
         timerText = "\(sessionMin):\(secString)"
@@ -52,17 +53,33 @@ class sessionViewModel: ObservableObject {
         initialSec = sessionSec
     }
     
-    func setupTimer(){
+    func setupTimer() {
         let totalSeconds = Float(sessionMin * 60 + sessionSec)
         step = totalSeconds > 0 ? 1 / totalSeconds : 0
         progress = 0
         setTimertext()
-        timerCancellable = Timer.publish(every: 0.1, on: .main, in: .common)
-            .autoconnect()
-            .sink { [weak self] _ in
-                self?.onTimerTick()
-            }
+        // ✅ Add 1-second delay before starting timer
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.timerCancellable = Timer.publish(every: 0.1, on: .main, in: .common)
+                .autoconnect()
+                .sink { [weak self] _ in
+                    self?.onTimerTick()
+                }
+        }
     }
+    
+    
+//    func setupTimer(){
+//        let totalSeconds = Float(sessionMin * 60 + sessionSec)
+//        step = totalSeconds > 0 ? 1 / totalSeconds : 0
+//        progress = 0
+//        setTimertext()
+//        timerCancellable = Timer.publish(every: 0.1, on: .main, in: .common)
+//            .autoconnect()
+//            .sink { [weak self] _ in
+//                self?.onTimerTick()
+//            }
+//    }
     
     func decrementTime(){
         if sessionMin == 0 && sessionSec == 0 {
@@ -107,11 +124,12 @@ class sessionViewModel: ObservableObject {
         sessionMin = initialMin
         sessionSec = initialSec
         endSession = false
-        play = false
+        play = true
         setupTimer()
     }
     
     func resetModel(){
+        progress = 0.0
         sessionMin = 0
         sessionSec = 0
         reset = false
@@ -121,7 +139,6 @@ class sessionViewModel: ObservableObject {
         startSession = false
         endSession  = false
         timerText = ""
-        progress = 0.0
         timerCancellable?.cancel()
         timerCancellable = nil
         intervalColor = []
@@ -147,7 +164,6 @@ class sessionViewModel: ObservableObject {
             startSession = true
         }
     }
-    
     
     func makeSession(){
         resetModel()
