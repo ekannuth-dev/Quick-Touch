@@ -34,11 +34,11 @@ struct FullScreenOverlay: View {
     private func startLoopingColors() {
         stopTimer()
         guard !currentSession.intervalColor.isEmpty else { return }
-        timerCancellable = Timer.publish(every: max(1.0, Double(currentSession.sessionInterval)), on: .main, in: .common)
+        timerCancellable = Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
             .receive(on: DispatchQueue.main) // ✅ Ensure it updates the UI correctly
             .sink { _ in
-                currentIndex = (currentIndex + 1) % currentSession.intervalColor.count
+                currentIndex = Int.random(in: 0..<currentSession.intervalColor.count)
             }
     }
 

@@ -19,19 +19,19 @@ struct circularTimer : View {
                 ZStack {
                     ZStack {
                         Circle()
-                            .stroke(lineWidth: 20)
+                            .stroke(lineWidth: 10)
                             .foregroundColor(.blue.opacity(0.4))
                         Circle()
                             .trim(from: 0.0, to: CGFloat(1 - currentSession.progress))
-                            .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round))
+                            .stroke(style: StrokeStyle(lineWidth: 10, lineCap: .round))
                             .foregroundColor(.blue)
                             .rotationEffect(.degrees(-90.0))
                             .shadow(radius: 2)
                             .animation(.linear(duration: 1.0),value: currentSession.progress)
                     }
-                    .frame(width: 330, height: 330)
+                    .frame(width: 230, height: 230)
                     Text(currentSession.timerText)
-                        .font(.system(size: 100))
+                        .font(.system(size: 80))
                         .foregroundColor(.blue)
                         .bold()
                 }
