@@ -17,7 +17,12 @@ struct endSessionView: View {
                 .font(.largeTitle)
                 .padding()
             Button(action: {
-                lastSession.resetSession()
+                if lastSession.isIntervalSession {
+                    lastSession.resetIntervalSession()
+                }
+                else {
+                    lastSession.resetSession()
+                }
             }) {
                 Text("Restart the same session?")
             }

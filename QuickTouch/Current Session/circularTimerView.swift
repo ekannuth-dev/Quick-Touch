@@ -29,7 +29,7 @@ struct circularTimer : View {
                             .shadow(radius: 2)
                             .animation(.linear(duration: 1.0),value: currentSession.progress)
                     }
-                    .frame(width: 230, height: 230)
+                    .frame(width: 270, height: 270)
                     Text(currentSession.timerText)
                         .font(.system(size: 80))
                         .foregroundColor(.blue)

@@ -58,28 +58,12 @@ class sessionViewModel: ObservableObject {
         step = totalSeconds > 0 ? 1 / totalSeconds : 0
         progress = 0
         setTimertext()
-        // ✅ Add 1-second delay before starting timer
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.timerCancellable = Timer.publish(every: 0.1, on: .main, in: .common)
-                .autoconnect()
-                .sink { [weak self] _ in
-                    self?.onTimerTick()
-                }
-        }
+        self.timerCancellable = Timer.publish(every: 0.1, on: .main, in: .common)
+            .autoconnect()
+            .sink { [weak self] _ in
+                self?.onTimerTick()
+            }
     }
-    
-    
-//    func setupTimer(){
-//        let totalSeconds = Float(sessionMin * 60 + sessionSec)
-//        step = totalSeconds > 0 ? 1 / totalSeconds : 0
-//        progress = 0
-//        setTimertext()
-//        timerCancellable = Timer.publish(every: 0.1, on: .main, in: .common)
-//            .autoconnect()
-//            .sink { [weak self] _ in
-//                self?.onTimerTick()
-//            }
-//    }
     
     func decrementTime(){
         if sessionMin == 0 && sessionSec == 0 {
@@ -121,6 +105,14 @@ class sessionViewModel: ObservableObject {
     }
     
     func resetSession(){
+        sessionMin = initialMin
+        sessionSec = initialSec
+        endSession = false
+        play = false
+        setupTimer()
+    }
+    
+    func resetIntervalSession(){
         sessionMin = initialMin
         sessionSec = initialSec
         endSession = false
