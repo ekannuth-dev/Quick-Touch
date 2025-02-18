@@ -46,7 +46,8 @@ class sessionViewModel: ObservableObject {
     }
     
     func updateProgress(){
-        progress += step 
+        print(progress)
+        progress += (step / 10)
     }
     
     func saveTime(){
@@ -55,11 +56,11 @@ class sessionViewModel: ObservableObject {
     }
     
     func setupTimer() {
-        let totalSeconds = Float(sessionMin * 60 + sessionSec)
-        step = totalSeconds > 0 ? (10 / totalSeconds) : 0
-        progress = 0
         saveTime()
         setTimertext()
+        progress = 0
+        let totalSeconds = Float(sessionMin * 60 + sessionSec)
+        step = totalSeconds > 0 ? (1 / totalSeconds) : 0
         self.timerCancellable = Timer.publish(every: 0.1, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
@@ -89,20 +90,19 @@ class sessionViewModel: ObservableObject {
             if tickCount == 10 {
                 tickCount = 0
                 decrementTime()
-                checkCompletion()
             }
             updateProgress()
         }
     }
     
-    func checkCompletion(){
-        if sessionMin == 0 && sessionSec == 0 {
-            timerCancellable?.cancel()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){
-                self.endSession = true
-            }
-        }
-    }
+//    func checkCompletion(){
+//        if sessionMin == 0 && sessionSec == 0 {
+//            timerCancellable?.cancel()
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){
+//                self.endSession = true
+//            }
+//        }
+//    }
     
     func cancelSession(){
         cancel = true
