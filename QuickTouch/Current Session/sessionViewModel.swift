@@ -46,7 +46,6 @@ class sessionViewModel: ObservableObject {
     }
     
     func updateProgress(){
-        print(progress)
         progress += (step / 10)
     }
     
@@ -94,15 +93,6 @@ class sessionViewModel: ObservableObject {
             updateProgress()
         }
     }
-    
-//    func checkCompletion(){
-//        if sessionMin == 0 && sessionSec == 0 {
-//            timerCancellable?.cancel()
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){
-//                self.endSession = true
-//            }
-//        }
-//    }
     
     func cancelSession(){
         cancel = true

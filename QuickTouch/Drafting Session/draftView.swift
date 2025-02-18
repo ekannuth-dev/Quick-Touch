@@ -54,10 +54,10 @@ struct draftView: View {
                 }
             }
             .navigationTitle("Create Session")
-            .navigationBarBackButtonHidden(true)
-            .navigationDestination(isPresented: $draftModel.startSession){
-                sessionView(sessionDraft: draftModel)
-            }
+//            .navigationBarBackButtonHidden(true)
+//            .navigationDestination(isPresented: $draftModel.startSession){
+//                sessionView(sessionDraft: draftModel)
+//            }
     }
 }
 

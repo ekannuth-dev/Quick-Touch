@@ -26,9 +26,5 @@ struct TimerView: View {
             }.pickerStyle(.wheel)
             Text("Seconds")
         }
-//        .onChange(of: draftSession.initialMin) {
-//            draftSession.saveTime() }
-//        .onChange(of: draftSession.initialSec){
-//            draftSession.saveTime() }
     }
 }
