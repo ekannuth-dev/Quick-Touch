@@ -12,23 +12,23 @@ struct TimerView: View {
     @ObservedObject var draftSession: sessionViewModel
     var body: some View {
         HStack {
-            Picker("Select Timer", selection: $draftSession.sessionMin){
+            Picker("Select Timer", selection: $draftSession.initialMin){
                 ForEach(0...59, id: \.self) {num in
                     Text("\(num)")
                 }
             }.pickerStyle(.wheel)
                 .padding()
             Text("Minutes")
-            Picker("Intervals", selection: $draftSession.sessionSec){
+            Picker("Intervals", selection: $draftSession.initialSec){
                 ForEach(0...59, id: \.self) {num in
                     Text("\(num)")
                 }
             }.pickerStyle(.wheel)
             Text("Seconds")
         }
-        .onChange(of: draftSession.sessionMin) { 
-            draftSession.saveTime() }
-        .onChange(of: draftSession.sessionSec){
-            draftSession.saveTime() }
+//        .onChange(of: draftSession.initialMin) {
+//            draftSession.saveTime() }
+//        .onChange(of: draftSession.initialSec){
+//            draftSession.saveTime() }
     }
 }

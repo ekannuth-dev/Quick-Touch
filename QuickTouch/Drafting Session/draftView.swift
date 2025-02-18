@@ -12,7 +12,6 @@ import SwiftUI
 struct draftView: View {
     @ObservedObject var draftModel : sessionViewModel
     var body: some View {
-        NavigationStack(){
             VStack {
                 Form {
                     Section {
@@ -28,30 +27,30 @@ struct draftView: View {
                         intervalView(draftModel: draftModel)
                     }
                     
-                    Section {
-                        HStack {
-                            Button("Start Session"){
-                                draftModel.draftAlert()
-                            }
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .clipShape(Capsule())
-                            .alert("Invalid Time", isPresented: $draftModel.timerAlert){
-                                Button("OK", role: .cancel){}
-                            } message: {
-                                Text("Please select a valid time greater than 0.")
-                            }
-                            .alert("Invalid Color Selection", isPresented: $draftModel.colorAlert){
-                                Button("OK", role: .cancel){}
-                            } message: {
-                                Text("Please select at least two colors")
-                            }
-                        }
-                        .frame(maxWidth: .infinity)
-                        .buttonStyle(PlainButtonStyle())
-                        .padding()
-                    }
+//                    Section {
+//                        HStack {
+//                            Button("Start Session"){
+//                                draftModel.draftAlert()
+//                            }
+//                            .padding()
+//                            .background(Color.blue)
+//                            .foregroundColor(.white)
+//                            .clipShape(Capsule())
+//                            .alert("Invalid Time", isPresented: $draftModel.timerAlert){
+//                                Button("OK", role: .cancel){}
+//                            } message: {
+//                                Text("Please select a valid time greater than 0.")
+//                            }
+//                            .alert("Invalid Color Selection", isPresented: $draftModel.colorAlert){
+//                                Button("OK", role: .cancel){}
+//                            } message: {
+//                                Text("Please select at least two colors")
+//                            }
+//                        }
+//                        .frame(maxWidth: .infinity)
+//                        .buttonStyle(PlainButtonStyle())
+//                        .padding()
+//                    }
                 }
             }
             .navigationTitle("Create Session")
@@ -59,7 +58,6 @@ struct draftView: View {
             .navigationDestination(isPresented: $draftModel.startSession){
                 sessionView(sessionDraft: draftModel)
             }
-        }
     }
 }
 

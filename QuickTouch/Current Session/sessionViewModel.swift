@@ -14,7 +14,7 @@ class sessionViewModel: ObservableObject {
     @Published var sessionMin : Int = 0
     @Published var sessionSec : Int = 0
     @Published var reset : Bool = false
-    @Published var play : Bool = true
+    @Published var play : Bool = false
     @Published var cancel : Bool = false
     @Published var draftSession : Bool = false
     @Published var startSession : Bool = false
@@ -34,8 +34,9 @@ class sessionViewModel: ObservableObject {
     @Published var timerCancellable: AnyCancellable?
     @Published var timerAlert = false
     @Published var colorAlert = false
-    private var initialMin : Int = 0
-    private var initialSec : Int = 0
+    
+    var initialMin : Int = 0
+    var initialSec : Int = 0
     private var step: Float = 0.0
     private var tickCount = 0
     
@@ -45,18 +46,19 @@ class sessionViewModel: ObservableObject {
     }
     
     func updateProgress(){
-        progress += (step / 10)
+        progress += step 
     }
     
     func saveTime(){
-        initialMin = sessionMin
-        initialSec = sessionSec
+        sessionMin = initialMin
+        sessionSec = initialSec
     }
     
     func setupTimer() {
         let totalSeconds = Float(sessionMin * 60 + sessionSec)
-        step = totalSeconds > 0 ? 1 / totalSeconds : 0
+        step = totalSeconds > 0 ? (10 / totalSeconds) : 0
         progress = 0
+        saveTime()
         setTimertext()
         self.timerCancellable = Timer.publish(every: 0.1, on: .main, in: .common)
             .autoconnect()
@@ -67,7 +69,9 @@ class sessionViewModel: ObservableObject {
     
     func decrementTime(){
         if sessionMin == 0 && sessionSec == 0 {
-            return // Safely exit if both minute and second are 0
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    self.resetSession() // ✅ Runs after 2 seconds
+                }
         }
         else if sessionSec > 0 {
             sessionSec -= 1
