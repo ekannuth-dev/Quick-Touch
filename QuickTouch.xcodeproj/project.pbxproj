@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -34,12 +34,17 @@
 		343F3DC62D54053C009EA0A8 /* intervalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = intervalView.swift; sourceTree = "<group>"; };
 		343F3DCA2D5BBBF4009EA0A8 /* overLayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = overLayView.swift; sourceTree = "<group>"; };
 		343F3DCC2D640579009EA0A8 /* dataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataView.swift; sourceTree = "<group>"; };
+		343F3DCF2D665FD4009EA0A8 /* aboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aboutView.swift; sourceTree = "<group>"; };
 		34D894D72CA46120007E774E /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		34D894D92CA7399B007E774E /* sessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sessionView.swift; sourceTree = "<group>"; };
 		34D894DD2CAB73B3007E774E /* circularTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = circularTimerView.swift; sourceTree = "<group>"; };
 		34D894DF2CAB97EF007E774E /* endSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = endSessionView.swift; sourceTree = "<group>"; };
 		34EF01CE2CC6AC7800F7451B /* sessionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sessionButtons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		343F3DCE2D665FBA009EA0A8 /* General View */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "General View"; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		340E40022C88EF310064A8ED /* Frameworks */ = {
@@ -93,7 +98,9 @@
 		34EF01CB2CC5D13800F7451B /* Drafting Session */ = {
 			isa = PBXGroup;
 			children = (
+				343F3DCE2D665FBA009EA0A8 /* General View */,
 				34D894D72CA46120007E774E /* TimerView.swift */,
+				343F3DCF2D665FD4009EA0A8 /* aboutView.swift */,
 				340E40162C8BD5FD0064A8ED /* draftView.swift */,
 				343F3DC62D54053C009EA0A8 /* intervalView.swift */,
 			);

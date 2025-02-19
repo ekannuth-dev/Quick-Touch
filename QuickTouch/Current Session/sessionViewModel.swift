@@ -54,7 +54,7 @@ class sessionViewModel: ObservableObject {
         sessionSec = initialSec
     }
     
-    func setupTimer() {
+    func setupTimer(){
         saveTime()
         setTimertext()
         progress = 0

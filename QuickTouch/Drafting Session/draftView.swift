@@ -12,52 +12,54 @@ import SwiftUI
 struct draftView: View {
     @ObservedObject var draftModel : sessionViewModel
     var body: some View {
-            VStack {
+        VStack {
+            NavigationView {
                 Form {
-                    Section {
-                        HStack {
+                    Section("Session") {
                             TimerView(draftSession: draftModel)
-                        }
+                            Toggle("Enable Interval Session", isOn: $draftModel.isIntervalSession)
                     }
-                    Section {
-                        Toggle("Enable Interval Session", isOn: $draftModel.isIntervalSession)
+                    Section("General"){
+                        NavigationLink(destination: AboutView()) {
+                                    HStack {
+                                        Image(systemName: "info.circle") // ✅ Adds an info icon
+                                            .foregroundColor(.blue)
+                                        Text("About Us & How This App Works")
+                                    }
+                                }
                     }
-                    
-                    if draftModel.isIntervalSession {
-                        intervalView(draftModel: draftModel)
-                    }
-                    
-//                    Section {
-//                        HStack {
-//                            Button("Start Session"){
-//                                draftModel.draftAlert()
-//                            }
-//                            .padding()
-//                            .background(Color.blue)
-//                            .foregroundColor(.white)
-//                            .clipShape(Capsule())
-//                            .alert("Invalid Time", isPresented: $draftModel.timerAlert){
-//                                Button("OK", role: .cancel){}
-//                            } message: {
-//                                Text("Please select a valid time greater than 0.")
-//                            }
-//                            .alert("Invalid Color Selection", isPresented: $draftModel.colorAlert){
-//                                Button("OK", role: .cancel){}
-//                            } message: {
-//                                Text("Please select at least two colors")
-//                            }
-//                        }
-//                        .frame(maxWidth: .infinity)
-//                        .buttonStyle(PlainButtonStyle())
-//                        .padding()
+//                    if draftModel.isIntervalSession {
+//                        intervalView(draftModel: draftModel)
 //                    }
+                    
+                    //                    Section {
+                    //                        HStack {
+                    //                            Button("Start Session"){
+                    //                                draftModel.draftAlert()
+                    //                            }
+                    //                            .padding()
+                    //                            .background(Color.blue)
+                    //                            .foregroundColor(.white)
+                    //                            .clipShape(Capsule())
+                    //                            .alert("Invalid Time", isPresented: $draftModel.timerAlert){
+                    //                                Button("OK", role: .cancel){}
+                    //                            } message: {
+                    //                                Text("Please select a valid time greater than 0.")
+                    //                            }
+                    //                            .alert("Invalid Color Selection", isPresented: $draftModel.colorAlert){
+                    //                                Button("OK", role: .cancel){}
+                    //                            } message: {
+                    //                                Text("Please select at least two colors")
+                    //                            }
+                    //                        }
+                    //                        .frame(maxWidth: .infinity)
+                    //                        .buttonStyle(PlainButtonStyle())
+                    //                        .padding()
+                    //                    }
                 }
+                .navigationTitle("Settings")
             }
-            .navigationTitle("Create Session")
-//            .navigationBarBackButtonHidden(true)
-//            .navigationDestination(isPresented: $draftModel.startSession){
-//                sessionView(sessionDraft: draftModel)
-//            }
+        }
     }
 }
 
