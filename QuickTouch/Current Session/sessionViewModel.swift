@@ -55,11 +55,13 @@ class sessionViewModel: ObservableObject {
     }
     
     func setupTimer(){
-        saveTime()
-        setTimertext()
-        progress = 0
-        let totalSeconds = Float(sessionMin * 60 + sessionSec)
-        step = totalSeconds > 0 ? (1 / totalSeconds) : 0
+        if play != true {
+            saveTime()
+            setTimertext()
+            progress = 0
+            let totalSeconds = Float(sessionMin * 60 + sessionSec)
+            step = totalSeconds > 0 ? (1 / totalSeconds) : 0
+        }
         self.timerCancellable = Timer.publish(every: 0.1, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
