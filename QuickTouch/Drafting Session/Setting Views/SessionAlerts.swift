@@ -21,7 +21,7 @@ enum SessionAlerts: Identifiable {
         case .zeroTimeAlert:
             return "Initial time cannot be zero. Please set a valid time before enabling interval session"
         case .colorAlert:
-            return "Please select atleast two colors"
+            return "Please select at least two colors"
         }
     }
 }

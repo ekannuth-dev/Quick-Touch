@@ -9,52 +9,59 @@ import SwiftUI
 
 struct intervalView: View {
     @ObservedObject var draftModel: sessionViewModel
+    
+    // Constants for better maintainability
+    private let circleSize: CGFloat = 40
+    private let gridSpacing: CGFloat = 8
+    private let gridColumns = Array(repeating: GridItem(.flexible(), spacing: 8), count: 4)
 
     var body: some View {
-        Section(header: Text("Select a Color").font(.headline)) {
-            LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 3), spacing: 12) {
-                ForEach(draftModel.availableColors.indices, id: \.self) { index in
-                    let colorItem = draftModel.availableColors[index]
-                    Circle()
-                        .fill(colorItem.color)
-                        .frame(width: 50, height: 50)
-                        .overlay(
-                            Text(colorItem.name)
-                                .font(.caption)
-                                .foregroundColor(.white)
-                                .shadow(radius: 2)
+        VStack(spacing: 10) {
+            // Available Colors Section
+            VStack(alignment: .leading, spacing: 5) {
+                Text("Select up to 5 Colors")
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                    .padding()
+                
+                LazyVGrid(columns: gridColumns, spacing: gridSpacing) {
+                    ForEach(draftModel.availableColors.indices, id: \.self) { index in
+                        let colorItem = draftModel.availableColors[index]
+                        colorCircle(
+                            color: colorItem.color,
+                            label: colorItem.name,
+                            action: {
+                                draftModel.intervalColor.append(colorItem.color)
+                                draftModel.availableColors.remove(at: index)
+                            }
                         )
-                        .onTapGesture {
-                            draftModel.intervalColor.append(colorItem.color) // ✅ Add color
-                            draftModel.availableColors.remove(at: index) // ✅ Remove from selection
-                        }
-                        .padding(5)
+                    }
                 }
             }
-        }
-        .padding()
-        
-        Section(header: Text("Selected Colors").font(.headline)) {
-            if draftModel.intervalColor.isEmpty {
-                Text("No colors selected")
-                    .foregroundColor(.gray)
-            } else {
-                LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 3), spacing: 12) {
-                    ForEach(draftModel.intervalColor.indices, id: \.self) { index in
-                        let color = draftModel.intervalColor[index]
-                        Circle()
-                            .fill(color)
-                            .frame(width: 50, height: 50)
-                            .overlay(
-                                Image(systemName: "xmark")
-                                    .foregroundColor(.white)
-                                    .padding(10)
+            
+            // Selected Colors Section
+            VStack(alignment: .leading, spacing: 5) {
+                Text("Selected Colors")
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                
+                if draftModel.intervalColor.isEmpty {
+                    Text("No colors selected")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                } else {
+                    LazyVGrid(columns: gridColumns, spacing: gridSpacing) {
+                        ForEach(draftModel.intervalColor.indices, id: \.self) { index in
+                            let color = draftModel.intervalColor[index]
+                            colorCircle(
+                                color: color,
+                                isSelected: true,
+                                action: {
+                                    draftModel.availableColors.append(getColorInfo(for: color))
+                                    draftModel.intervalColor.remove(at: index)
+                                }
                             )
-                            .onTapGesture {
-                                draftModel.availableColors.append(getColorInfo(for: color))
-                                draftModel.intervalColor.remove(at: index)
-                            }
-                            .padding(5)
+                        }
                     }
                 }
             }
@@ -62,6 +69,29 @@ struct intervalView: View {
         .padding()
     }
     
+    // Extracted color circle view for reusability
+    private func colorCircle(color: Color, label: String? = nil, isSelected: Bool = false, action: @escaping () -> Void) -> some View {
+        Circle()
+            .fill(color)
+            .frame(width: circleSize, height: circleSize)
+            .overlay(
+                Group {
+                    if isSelected {
+                        Image(systemName: "xmark")
+                            .font(.caption)
+                            .foregroundColor(.white)
+                    } else if let label = label {
+                        Text(label)
+                            .font(.caption2)
+                            .foregroundColor(.white)
+                            .shadow(radius: 1)
+                    }
+                }
+            )
+            .onTapGesture(perform: action)
+    }
+    
+    // Existing getColorInfo function
     func getColorInfo(for color: Color) -> (name: String, color: Color) {
         let allColors: [(name: String, color: Color)] = [
             ("Red", .red),

@@ -14,19 +14,21 @@ struct SettingSession: View {
     var body: some View {
         VStack {
             TimerView(draftSession: draftModel)
+            intervalView(draftModel: draftModel)
             Toggle("Enable Interval Session", isOn: Binding (
                 get: { draftModel.isIntervalSession },
                 set: { newValue in
                     if newValue && draftModel.initialMin == 0 && draftModel.initialSec == 0 {
                         activeAlert = .zeroTimeAlert
-                    } else {
+                    }
+                    else if draftModel.intervalColor.count < 2 {
+                        activeAlert = .colorAlert
+                    }
+                    else {
                         draftModel.isIntervalSession = newValue
                     }
                 }
             ))
-            if draftModel.isIntervalSession {
-                intervalView(draftModel: draftModel)
-            }
         }
         .alert(item: $activeAlert) { alert in
             Alert(
