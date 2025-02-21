@@ -15,13 +15,13 @@ struct tabView: View {
     var body: some View {
         TabView(selection: $selectedTab){
             dataView()
-                .tabItem{
+                .tabItem {
                     Image(systemName: "chart.bar")
                     Text("Data")
                 }
                 .tag(0)
             sessionView(sessionDraft: sessionModel)
-                .tabItem{
+                .tabItem {
                     Image(systemName: "timer")
                     Text("Session")
                 }

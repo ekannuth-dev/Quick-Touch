@@ -11,12 +11,10 @@
 		340E400B2C88EF310064A8ED /* tabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340E400A2C88EF310064A8ED /* tabView.swift */; };
 		340E400D2C88EF330064A8ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 340E400C2C88EF330064A8ED /* Assets.xcassets */; };
 		340E40102C88EF330064A8ED /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 340E400F2C88EF330064A8ED /* Preview Assets.xcassets */; };
-		340E40172C8BD5FD0064A8ED /* settingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340E40162C8BD5FD0064A8ED /* settingView.swift */; };
 		340E401B2C934BA30064A8ED /* sessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340E401A2C934BA30064A8ED /* sessionViewModel.swift */; };
 		343F3DC72D540546009EA0A8 /* intervalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343F3DC62D54053C009EA0A8 /* intervalView.swift */; };
 		343F3DCB2D5BBBFF009EA0A8 /* overLayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343F3DCA2D5BBBF4009EA0A8 /* overLayView.swift */; };
 		343F3DCD2D64057F009EA0A8 /* dataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343F3DCC2D640579009EA0A8 /* dataView.swift */; };
-		34D623992D68D49500558C61 /* AboutView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D623982D68D48400558C61 /* AboutView2.swift */; };
 		34D894D82CA46120007E774E /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D894D72CA46120007E774E /* TimerView.swift */; };
 		34D894DA2CA7399B007E774E /* sessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D894D92CA7399B007E774E /* sessionView.swift */; };
 		34D894DE2CAB73B3007E774E /* circularTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D894DD2CAB73B3007E774E /* circularTimerView.swift */; };
@@ -30,12 +28,10 @@
 		340E400A2C88EF310064A8ED /* tabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabView.swift; sourceTree = "<group>"; };
 		340E400C2C88EF330064A8ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		340E400F2C88EF330064A8ED /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		340E40162C8BD5FD0064A8ED /* settingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingView.swift; sourceTree = "<group>"; };
 		340E401A2C934BA30064A8ED /* sessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sessionViewModel.swift; sourceTree = "<group>"; };
 		343F3DC62D54053C009EA0A8 /* intervalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = intervalView.swift; sourceTree = "<group>"; };
 		343F3DCA2D5BBBF4009EA0A8 /* overLayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = overLayView.swift; sourceTree = "<group>"; };
 		343F3DCC2D640579009EA0A8 /* dataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataView.swift; sourceTree = "<group>"; };
-		34D623982D68D48400558C61 /* AboutView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView2.swift; sourceTree = "<group>"; };
 		34D894D72CA46120007E774E /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		34D894D92CA7399B007E774E /* sessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sessionView.swift; sourceTree = "<group>"; };
 		34D894DD2CAB73B3007E774E /* circularTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = circularTimerView.swift; sourceTree = "<group>"; };
@@ -43,8 +39,19 @@
 		34EF01CE2CC6AC7800F7451B /* sessionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sessionButtons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		34D6239B2D69082900558C61 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				AboutView2.swift,
+			);
+			target = 340E40042C88EF310064A8ED /* QuickTouch */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		343F3DCE2D665FBA009EA0A8 /* General View */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "General View"; sourceTree = "<group>"; };
+		343F3DCE2D665FBA009EA0A8 /* General View */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (34D6239B2D69082900558C61 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "General View"; sourceTree = "<group>"; };
+		34D6239A2D69081A00558C61 /* Setting Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Setting Views"; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,10 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				343F3DCE2D665FBA009EA0A8 /* General View */,
-				34D894D72CA46120007E774E /* TimerView.swift */,
-				340E40162C8BD5FD0064A8ED /* settingView.swift */,
-				34D623982D68D48400558C61 /* AboutView2.swift */,
-				343F3DC62D54053C009EA0A8 /* intervalView.swift */,
+				34D6239A2D69081A00558C61 /* Setting Views */,
 			);
 			path = "Drafting Session";
 			sourceTree = "<group>";
@@ -111,11 +115,13 @@
 		34EF01CC2CC5D18B00F7451B /* Current Session */ = {
 			isa = PBXGroup;
 			children = (
+				343F3DC62D54053C009EA0A8 /* intervalView.swift */,
 				340E401A2C934BA30064A8ED /* sessionViewModel.swift */,
 				34D894DD2CAB73B3007E774E /* circularTimerView.swift */,
 				343F3DCA2D5BBBF4009EA0A8 /* overLayView.swift */,
 				34D894D92CA7399B007E774E /* sessionView.swift */,
 				34EF01CE2CC6AC7800F7451B /* sessionButtons.swift */,
+				34D894D72CA46120007E774E /* TimerView.swift */,
 			);
 			path = "Current Session";
 			sourceTree = "<group>";
@@ -143,6 +149,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				34D6239A2D69081A00558C61 /* Setting Views */,
 			);
 			name = QuickTouch;
 			productName = QuickTouch;
@@ -201,7 +210,6 @@
 			files = (
 				34D894D82CA46120007E774E /* TimerView.swift in Sources */,
 				343F3DC72D540546009EA0A8 /* intervalView.swift in Sources */,
-				34D623992D68D49500558C61 /* AboutView2.swift in Sources */,
 				343F3DCD2D64057F009EA0A8 /* dataView.swift in Sources */,
 				34D894DA2CA7399B007E774E /* sessionView.swift in Sources */,
 				34D894DE2CAB73B3007E774E /* circularTimerView.swift in Sources */,
@@ -210,7 +218,6 @@
 				340E400B2C88EF310064A8ED /* tabView.swift in Sources */,
 				343F3DCB2D5BBBFF009EA0A8 /* overLayView.swift in Sources */,
 				34EF01CF2CC6AC7800F7451B /* sessionButtons.swift in Sources */,
-				340E40172C8BD5FD0064A8ED /* settingView.swift in Sources */,
 				340E40092C88EF310064A8ED /* QuickTouchApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,14 +12,12 @@ import StoreKit
 
 struct settingView: View {
     @ObservedObject var draftModel : sessionViewModel
-    //  let windowScene =
     var body: some View {
         VStack {
             NavigationView {
                 Form {
                     Section("Session") {
-                        TimerView(draftSession: draftModel)
-                        Toggle("Enable Interval Session", isOn: $draftModel.isIntervalSession)
+                        SettingSession(draftModel: draftModel)
                     }
                     Section("General"){
                         NavigationLink(destination: AboutView2()) {
