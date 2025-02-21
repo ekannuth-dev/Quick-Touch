@@ -26,7 +26,7 @@ struct tabView: View {
                     Text("Session")
                 }
                 .tag(1)
-            draftView(draftModel: sessionModel)
+            settingView(draftModel: sessionModel)
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")

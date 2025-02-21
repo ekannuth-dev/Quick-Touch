@@ -51,8 +51,8 @@ struct intervalView: View {
                                     .padding(10)
                             )
                             .onTapGesture {
-                                draftModel.availableColors.append(getColorInfo(for: color)) // ✅ Add back to selection
-                                draftModel.intervalColor.remove(at: index) // ✅ Remove from selected
+                                draftModel.availableColors.append(getColorInfo(for: color))
+                                draftModel.intervalColor.remove(at: index)
                             }
                             .padding(5)
                     }

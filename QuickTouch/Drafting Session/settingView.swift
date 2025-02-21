@@ -7,30 +7,50 @@
 
 import Foundation
 import SwiftUI
+import StoreKit
 
 
-struct draftView: View {
+struct settingView: View {
     @ObservedObject var draftModel : sessionViewModel
+    //  let windowScene =
     var body: some View {
         VStack {
             NavigationView {
                 Form {
                     Section("Session") {
-                            TimerView(draftSession: draftModel)
-                            Toggle("Enable Interval Session", isOn: $draftModel.isIntervalSession)
+                        TimerView(draftSession: draftModel)
+                        Toggle("Enable Interval Session", isOn: $draftModel.isIntervalSession)
                     }
                     Section("General"){
-                        NavigationLink(destination: AboutView()) {
-                                    HStack {
-                                        Image(systemName: "info.circle") // ✅ Adds an info icon
-                                            .foregroundColor(.blue)
-                                        Text("About Us & How This App Works")
-                                    }
-                                }
+                        NavigationLink(destination: AboutView2()) {
+                            HStack {
+                                Image(systemName: "info.circle")
+                                    .foregroundColor(.blue)
+                                Text("About Us")
+                            }
+                        }
+                        NavigationLink(destination: AboutView2()) {
+                            HStack {
+                                Image(systemName: "questionmark.circle")
+                                    .foregroundColor(.blue)
+                                Text("How the App works")
+                            }
+                        }
+                        Button(action: {
+                            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                                SKStoreReviewController.requestReview(in: windowScene)
+                            }
+                        }) {
+                            HStack {
+                                Image(systemName: "star.fill")
+                                    .foregroundColor(.blue)
+                                Text("Rate the App")
+                            }
+                        }
                     }
-//                    if draftModel.isIntervalSession {
-//                        intervalView(draftModel: draftModel)
-//                    }
+                    //                    if draftModel.isIntervalSession {
+                    //                        intervalView(draftModel: draftModel)
+                    //                    }
                     
                     //                    Section {
                     //                        HStack {
@@ -66,5 +86,5 @@ struct draftView: View {
 
 #Preview {
     let mockModel = sessionViewModel() // Create a mock model with sample data
-    draftView(draftModel: mockModel) // Pass the mock model to the view
+    settingView(draftModel: mockModel) // Pass the mock model to the view
 }
