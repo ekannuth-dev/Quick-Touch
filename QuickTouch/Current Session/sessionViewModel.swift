@@ -71,9 +71,7 @@ class sessionViewModel: ObservableObject {
     
     func decrementTime(){
         if sessionMin == 0 && sessionSec == 0 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                    self.resetSession() // ✅ Runs after 2 seconds
-                }
+                self.resetSession()
         }
         else if sessionSec > 0 {
             sessionSec -= 1
@@ -101,11 +99,13 @@ class sessionViewModel: ObservableObject {
     }
     
     func resetSession(){
+        play = false
         sessionMin = initialMin
         sessionSec = initialSec
-        endSession = false
-        play = false
-        setupTimer()
+  //      endSession = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
+            self.setupTimer()
+        }
     }
     
 //    func resetIntervalSession(){

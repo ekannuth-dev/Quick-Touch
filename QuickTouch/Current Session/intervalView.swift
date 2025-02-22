@@ -16,15 +16,15 @@ struct intervalView: View {
     private let gridColumns = Array(repeating: GridItem(.flexible(), spacing: 8), count: 4)
 
     var body: some View {
-        VStack(spacing: 10) {
+        VStack(spacing: 24) {
             // Available Colors Section
-            VStack(alignment: .leading, spacing: 5) {
+            VStack(alignment: .leading, spacing: 12) {
                 Text("Select up to 5 Colors")
-                    .font(.subheadline)
-                    .fontWeight(.medium)
-                    .padding()
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .padding(.horizontal)
                 
-                LazyVGrid(columns: gridColumns, spacing: gridSpacing) {
+                LazyVGrid(columns: gridColumns, spacing: 16) {
                     ForEach(draftModel.availableColors.indices, id: \.self) { index in
                         let colorItem = draftModel.availableColors[index]
                         colorCircle(
@@ -35,22 +35,30 @@ struct intervalView: View {
                                 draftModel.availableColors.remove(at: index)
                             }
                         )
+                        .shadow(color: .gray.opacity(0.2), radius: 3, x: 0, y: 2)
                     }
                 }
             }
+            .padding()
+            .background(Color.gray.opacity(0.05))
+            .cornerRadius(12)
             
             // Selected Colors Section
-            VStack(alignment: .leading, spacing: 5) {
+            VStack(alignment: .leading, spacing: 12) {
                 Text("Selected Colors")
-                    .font(.subheadline)
-                    .fontWeight(.medium)
+                    .font(.headline)
+                    .fontWeight(.semibold)
                 
                 if draftModel.intervalColor.isEmpty {
                     Text("No colors selected")
-                        .font(.caption)
+                        .font(.subheadline)
                         .foregroundColor(.gray)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding()
+                        .background(Color.gray.opacity(0.1))
+                        .cornerRadius(8)
                 } else {
-                    LazyVGrid(columns: gridColumns, spacing: gridSpacing) {
+                    LazyVGrid(columns: gridColumns, spacing: 16) {
                         ForEach(draftModel.intervalColor.indices, id: \.self) { index in
                             let color = draftModel.intervalColor[index]
                             colorCircle(
@@ -61,10 +69,14 @@ struct intervalView: View {
                                     draftModel.intervalColor.remove(at: index)
                                 }
                             )
+                            .shadow(color: .gray.opacity(0.2), radius: 3, x: 0, y: 2)
                         }
                     }
                 }
             }
+            .padding()
+            .background(Color.gray.opacity(0.05))
+            .cornerRadius(12)
         }
         .padding()
     }
