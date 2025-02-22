@@ -100,10 +100,9 @@ class sessionViewModel: ObservableObject {
     
     func resetSession(){
         play = false
-        sessionMin = initialMin
-        sessionSec = initialSec
-  //      endSession = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){
+            self.sessionMin = self.initialMin
+            self.sessionSec = self.initialSec
             self.setupTimer()
         }
     }

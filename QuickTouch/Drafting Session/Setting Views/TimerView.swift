@@ -43,7 +43,7 @@ struct TimerView: View {
                     }
                 }
                 .pickerStyle(.wheel)
-                .frame(height: 100) // ✅ Adjusted size
+                .frame(height: 150) // ✅ Adjusted size
                 
                 Text("Min").font(.caption).foregroundColor(.gray) // ✅ Smaller text label
             }
@@ -59,7 +59,7 @@ struct TimerView: View {
                     }
                 }
                 .pickerStyle(.wheel)
-                .frame(height: 100) // ✅ Adjusted size
+                .frame(height: 150) // ✅ Adjusted size
                 
                 Text("Sec").font(.caption).foregroundColor(.gray) // ✅ Smaller text label
             }
