@@ -55,7 +55,7 @@ class sessionViewModel: ObservableObject {
     }
     
     func setupTimer(){
-        if play != true {
+        if play != true /*&& progress >= 1.0*/ {
             saveTime()
             setTimertext()
             progress = 0
@@ -71,7 +71,7 @@ class sessionViewModel: ObservableObject {
     
     func decrementTime(){
         if sessionMin == 0 && sessionSec == 0 {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                     self.resetSession() // ✅ Runs after 2 seconds
                 }
         }
@@ -108,13 +108,13 @@ class sessionViewModel: ObservableObject {
         setupTimer()
     }
     
-    func resetIntervalSession(){
-        sessionMin = initialMin
-        sessionSec = initialSec
-        endSession = false
-        play = true
-        setupTimer()
-    }
+//    func resetIntervalSession(){
+//        sessionMin = initialMin
+//        sessionSec = initialSec
+//        endSession = false
+//        play = true
+//        setupTimer()
+//    }
     
     func resetModel(){
         progress = 0.0

@@ -15,19 +15,27 @@ struct FullScreenOverlay: View {
     @State private var timerCancellable: AnyCancellable?
 
     var body: some View {
+        colorOverlayView()
+            .onChange(of: currentSession.play) { oldisPlaying , isPlaying in
+                if isPlaying {
+                    startLoopingColors()
+                } else {
+                    stopTimer()
+                }
+            }
+            .onDisappear {
+                stopTimer()
+            }
+    }
+    
+    private func colorOverlayView() -> some View {
         ZStack {
-            if currentSession.isIntervalSession, !currentSession.intervalColor.isEmpty {
+            if !currentSession.intervalColor.isEmpty {
                 currentSession.intervalColor[currentIndex]
                     .ignoresSafeArea()
             } else {
                 Color.clear.ignoresSafeArea()
             }
-        }
-        .onAppear {
-            startLoopingColors()
-        }
-        .onDisappear {
-            stopTimer()
         }
     }
 
@@ -36,7 +44,7 @@ struct FullScreenOverlay: View {
         guard !currentSession.intervalColor.isEmpty else { return }
         timerCancellable = Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
-            .receive(on: DispatchQueue.main) // ✅ Ensure it updates the UI correctly
+            .receive(on: DispatchQueue.main)
             .sink { _ in
                 currentIndex = Int.random(in: 0..<currentSession.intervalColor.count)
             }
