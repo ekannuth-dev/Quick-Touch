@@ -12,9 +12,6 @@ struct sessionView: View {
     @ObservedObject var sessionDraft: sessionViewModel
     var body: some View {
             circularTimer(currentSession: sessionDraft)
-//            .navigationDestination(isPresented: $sessionDraft.endSessi-on){
-//                endSessionView(lastSession: sessionDraft)
-//            }
     }
 }
 

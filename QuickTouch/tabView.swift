@@ -14,12 +14,6 @@ struct tabView: View {
     @State var selectedTab = 1
     var body: some View {
         TabView(selection: $selectedTab){
-            dataView()
-                .tabItem {
-                    Image(systemName: "chart.bar")
-                    Text("Data")
-                }
-                .tag(0)
             sessionView(sessionDraft: sessionModel)
                 .tabItem {
                     Image(systemName: "timer")
