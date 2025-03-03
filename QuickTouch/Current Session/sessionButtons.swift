@@ -45,25 +45,6 @@ struct sessionButtons: View {
                     sameSession.resetSession()
                 }
             })
-//            Button {
-//                sameSession.play = false
-//                alertCancel.toggle()
-//            }
-//            label: {
-//                Image(systemName: "xmark")
-//                    .resizable()
-//                    .frame(width: 25, height: 25)
-//                    .font(.system(size: 25, weight: .bold))
-//                    .foregroundColor(.blue)
-//            }
-//            .alert("Do you want to cancel the session?", isPresented: $alertCancel, actions: {
-//                Button("Continue", role: .cancel){
-//                    sameSession.play = true
-//                }
-//                Button("Cancel", role: .destructive){
-//                    sameSession.makeSession()
-//                }
-//            })
         }
     }
 }

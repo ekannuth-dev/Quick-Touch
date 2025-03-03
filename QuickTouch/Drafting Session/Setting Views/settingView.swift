@@ -20,14 +20,14 @@ struct settingView: View {
                         SettingSession(draftModel: draftModel)
                     }
                     Section("General"){
-                        NavigationLink(destination: AboutView2()) {
+                        NavigationLink(destination: AboutView()) {
                             HStack {
                                 Image(systemName: "info.circle")
                                     .foregroundColor(.blue)
                                 Text("About Us")
                             }
                         }
-                        NavigationLink(destination: AboutView2()) {
+                        NavigationLink(destination: AboutView()) {
                             HStack {
                                 Image(systemName: "questionmark.circle")
                                     .foregroundColor(.blue)

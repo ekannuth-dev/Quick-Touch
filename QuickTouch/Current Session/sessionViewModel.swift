@@ -13,12 +13,7 @@ import SwiftUI
 class sessionViewModel: ObservableObject {
     @Published var sessionMin : Int = 0
     @Published var sessionSec : Int = 0
-    @Published var reset : Bool = false
     @Published var play : Bool = false
-    @Published var cancel : Bool = false
-    @Published var draftSession : Bool = false
-    @Published var startSession : Bool = false
-    @Published var endSession : Bool = false
     @Published var timerText: String = ""
     @Published var intervalColor : [Color] = []
     @Published var availableColors: [(name: String, color: Color)] = [
@@ -32,13 +27,13 @@ class sessionViewModel: ObservableObject {
     @Published var isIntervalSession = false
     @Published var progress: Float = 0.0
     @Published var timerCancellable: AnyCancellable?
-    @Published var timerAlert = false
-    @Published var colorAlert = false
-    
+    @Published var cache : Bool = false
     var initialMin : Int = 0
     var initialSec : Int = 0
     private var step: Float = 0.0
     private var tickCount = 0
+    
+    var onSessionComplete: (() -> Void)?
     
     func setTimertext(){
         let secString = sessionSec < 10 ? "0\(sessionSec)" : "\(sessionSec)"
@@ -55,7 +50,7 @@ class sessionViewModel: ObservableObject {
     }
     
     func setupTimer(){
-        if play != true /*&& progress >= 1.0*/ {
+        if play != true && cache == false {
             saveTime()
             setTimertext()
             progress = 0
@@ -71,7 +66,8 @@ class sessionViewModel: ObservableObject {
     
     func decrementTime(){
         if sessionMin == 0 && sessionSec == 0 {
-                self.resetSession()
+            onSessionComplete!()
+            self.resetSession()
         }
         else if sessionSec > 0 {
             sessionSec -= 1
@@ -92,10 +88,6 @@ class sessionViewModel: ObservableObject {
             }
             updateProgress()
         }
-    }
-    
-    func cancelSession(){
-        cancel = true
     }
     
     func resetSession(){
@@ -119,12 +111,7 @@ class sessionViewModel: ObservableObject {
         progress = 0.0
         sessionMin = 0
         sessionSec = 0
-        reset = false
         play = true
-        cancel = false
-        draftSession = false
-        startSession = false
-        endSession  = false
         timerText = ""
         timerCancellable?.cancel()
         timerCancellable = nil
@@ -138,18 +125,6 @@ class sessionViewModel: ObservableObject {
             ("Orange", .orange),
             ("Purple", .purple)
         ]
-    }
-    
-    func draftAlert(){
-        if sessionMin == 0 && sessionSec == 0 {
-            timerAlert = true
-        }
-        else if isIntervalSession, intervalColor.count < 2 {
-            colorAlert = true
-        }
-        else {
-            startSession = true
-        }
     }
     
     func makeSession(){
