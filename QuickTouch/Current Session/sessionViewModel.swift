@@ -99,14 +99,6 @@ class sessionViewModel: ObservableObject {
         }
     }
     
-//    func resetIntervalSession(){
-//        sessionMin = initialMin
-//        sessionSec = initialSec
-//        endSession = false
-//        play = true
-//        setupTimer()
-//    }
-    
     func resetModel(){
         progress = 0.0
         sessionMin = 0

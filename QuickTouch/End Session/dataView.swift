@@ -66,7 +66,7 @@ struct DataView: View {
             }
             .padding()
         }
-        .navigationTitle("Session Statistics")
+        .navigationTitle("Statistics")
     }
 }
 

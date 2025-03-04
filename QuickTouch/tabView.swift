@@ -34,7 +34,7 @@ struct tabView: View {
                 }
                 .tag(2)
         }
-        .modelContainer(for: SessionData.self)
+       // .modelContainer(for: SessionData.self)
     }
 }
 
