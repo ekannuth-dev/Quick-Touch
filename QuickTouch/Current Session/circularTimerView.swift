@@ -16,20 +16,14 @@ struct circularTimer : View {
     var body: some View {
         ZStack {
             if currentSession.isIntervalSession {
-                // Full screen overlay with just the buttons
                 ZStack {
                     FullScreenOverlay(currentSession: currentSession)
-                    
-                    // Only show buttons when overlay is active
-                    
                     sessionButtons(sameSession: currentSession)
 
                 }
             } else {
-                // Normal timer view when no overlay
                 VStack {
                     ZStack {
-                        // Timer circles
                         ZStack {
                             Circle()
                                 .stroke(lineWidth: 10)
@@ -44,7 +38,6 @@ struct circularTimer : View {
                         }
                         .frame(width: 270, height: 270)
                         
-                        // Timer text
                         Text(currentSession.timerText)
                             .font(.system(size: 80))
                             .foregroundColor(.blue)

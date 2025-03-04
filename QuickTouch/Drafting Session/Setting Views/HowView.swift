@@ -13,18 +13,15 @@ struct HowView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 15) {
-                // ✅ Title
                 Text("About the App")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .padding(.bottom, 10)
-
-                // ✅ Description
+                
                 Text("This app is designed for athletes looking to enhance their reaction time, precision, and focus. Whether you are training for speed, agility, or timed sessions, this app helps you track and improve your performance with structured timing and session management features.")
                     .font(.body)
                     .multilineTextAlignment(.leading)
 
-                // ✅ Features Section
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Key Features:")
                         .font(.title2)
@@ -36,8 +33,6 @@ struct HowView: View {
                     FeatureRow(icon: "figure.run", text: "Customizable training modes for different sports.")
                     FeatureRow(icon: "bell.fill", text: "Notifications to keep you on track with your sessions.")
                 }
-
-                // ✅ Call to Action
                 Text("Train smarter, react faster, and take your athletic performance to the next level!")
                     .font(.headline)
                     .foregroundColor(.blue)
@@ -48,7 +43,7 @@ struct HowView: View {
     }
 }
 
-// ✅ Feature Row Component
+
 struct FeatureRow: View {
     var icon: String
     var text: String

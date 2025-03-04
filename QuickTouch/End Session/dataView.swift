@@ -9,10 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct DataView: View {
-   // @Environment(\.modelContext) private var modelContext
     @Query private var sessionData: [SessionData]
     
-    // Computed properties to calculate statistics
     private var totalSessions: Int {
         sessionData.count
     }
