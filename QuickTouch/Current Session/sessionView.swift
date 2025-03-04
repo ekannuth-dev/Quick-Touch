@@ -11,17 +11,14 @@ import SwiftData
 struct SessionView: View {
     @Environment(\.modelContext) private var context
     @ObservedObject var sessionDraft: sessionViewModel
-    @Query private var sessions: [SessionData]  // Add this line to check sessions
-    
+    @Query private var sessions: [SessionData]
     var body: some View {
         VStack {
-            // Debug text to show current count
             circularTimer(currentSession: sessionDraft)
                 .onAppear {
                     sessionDraft.onSessionComplete = {
                         let completedSession = SessionData()
                         context.insert(completedSession)
-                    //    try? context.save()  // Make sure to save t
                     }
                 }
         }

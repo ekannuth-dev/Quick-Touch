@@ -20,14 +20,7 @@ struct settingView: View {
                         SettingSession(draftModel: draftModel)
                     }
                     Section("General"){
-                        NavigationLink(destination: AboutView()) {
-                            HStack {
-                                Image(systemName: "info.circle")
-                                    .foregroundColor(.blue)
-                                Text("About Us")
-                            }
-                        }
-                        NavigationLink(destination: AboutView()) {
+                        NavigationLink(destination: HowView()) {
                             HStack {
                                 Image(systemName: "questionmark.circle")
                                     .foregroundColor(.blue)
@@ -46,34 +39,6 @@ struct settingView: View {
                             }
                         }
                     }
-                    //                    if draftModel.isIntervalSession {
-                    //                        intervalView(draftModel: draftModel)
-                    //                    }
-                    
-                    //                    Section {
-                    //                        HStack {
-                    //                            Button("Start Session"){
-                    //                                draftModel.draftAlert()
-                    //                            }
-                    //                            .padding()
-                    //                            .background(Color.blue)
-                    //                            .foregroundColor(.white)
-                    //                            .clipShape(Capsule())
-                    //                            .alert("Invalid Time", isPresented: $draftModel.timerAlert){
-                    //                                Button("OK", role: .cancel){}
-                    //                            } message: {
-                    //                                Text("Please select a valid time greater than 0.")
-                    //                            }
-                    //                            .alert("Invalid Color Selection", isPresented: $draftModel.colorAlert){
-                    //                                Button("OK", role: .cancel){}
-                    //                            } message: {
-                    //                                Text("Please select at least two colors")
-                    //                            }
-                    //                        }
-                    //                        .frame(maxWidth: .infinity)
-                    //                        .buttonStyle(PlainButtonStyle())
-                    //                        .padding()
-                    //                    }
                 }
                 .navigationTitle("Settings")
             }
@@ -83,6 +48,6 @@ struct settingView: View {
 
 
 #Preview {
-    let mockModel = sessionViewModel() // Create a mock model with sample data
-    settingView(draftModel: mockModel) // Pass the mock model to the view
+    let mockModel = sessionViewModel()
+    settingView(draftModel: mockModel)
 }

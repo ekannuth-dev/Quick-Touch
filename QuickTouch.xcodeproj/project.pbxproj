@@ -37,18 +37,7 @@
 		34EF01CE2CC6AC7800F7451B /* sessionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sessionButtons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		34D6239B2D69082900558C61 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				AboutView.swift,
-			);
-			target = 340E40042C88EF310064A8ED /* QuickTouch */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		343F3DCE2D665FBA009EA0A8 /* General View */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (34D6239B2D69082900558C61 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "General View"; sourceTree = "<group>"; };
 		34D6239A2D69081A00558C61 /* Setting Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Setting Views"; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -104,7 +93,6 @@
 		34EF01CB2CC5D13800F7451B /* Drafting Session */ = {
 			isa = PBXGroup;
 			children = (
-				343F3DCE2D665FBA009EA0A8 /* General View */,
 				34D6239A2D69081A00558C61 /* Setting Views */,
 			);
 			path = "Drafting Session";
