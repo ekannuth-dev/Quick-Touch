@@ -28,42 +28,42 @@ struct DataView: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                // Today's Sessions
-                StatCard(
-                    title: "Today's Sessions",
-                    count: todaySessions,
-                    iconName: "sun.max.fill",
-                    color: .blue
-                )
-                
-                // This Month's Sessions
-                StatCard(
-                    title: "This Month's Sessions",
-                    count: monthSessions,
-                    iconName: "calendar",
-                    color: .orange
-                )
-                
-                // This Year's Sessions
-                StatCard(
-                    title: "This Year's Sessions",
-                    count: yearSessions,
-                    iconName: "calendar.circle.fill",
-                    color: .purple
-                )
-                
-                // Total Sessions
-                StatCard(
-                    title: "Total Sessions",
-                    count: totalSessions,
-                    iconName: "star.fill",
-                    color: .green
-                )
+            ScrollView {
+                VStack(spacing: 20) {
+                    // Today's Sessions
+                    StatCard(
+                        title: "Today's Sessions",
+                        count: todaySessions,
+                        iconName: "sun.max.fill",
+                        color: .blue
+                    )
+                    
+                    // This Month's Sessions
+                    StatCard(
+                        title: "This Month's Sessions",
+                        count: monthSessions,
+                        iconName: "calendar",
+                        color: .orange
+                    )
+                    
+                    // This Year's Sessions
+                    StatCard(
+                        title: "This Year's Sessions",
+                        count: yearSessions,
+                        iconName: "calendar.circle.fill",
+                        color: .purple
+                    )
+                    
+                    // Total Sessions
+                    StatCard(
+                        title: "Total Sessions",
+                        count: totalSessions,
+                        iconName: "star.fill",
+                        color: .green
+                    )
+                }
+                .padding()
             }
-            .padding()
-        }
         .navigationTitle("Statistics")
     }
 }

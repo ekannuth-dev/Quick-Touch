@@ -12,6 +12,8 @@ struct SessionView: View {
     @Environment(\.modelContext) private var context
     @ObservedObject var sessionDraft: sessionViewModel
     @Query private var sessions: [SessionData]
+    @StateObject private var viewModel = sessionViewModel()
+    
     var body: some View {
         VStack {
             circularTimer(currentSession: sessionDraft)
@@ -19,8 +21,14 @@ struct SessionView: View {
                     sessionDraft.onSessionComplete = {
                         let completedSession = SessionData()
                         context.insert(completedSession)
+                        viewModel.showCompletionAlert = true
                     }
                 }
+            .alert("Congratulations! 🎉", isPresented: $viewModel.showCompletionAlert) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text("You've successfully completed your session!")
+            }
         }
     }
 }

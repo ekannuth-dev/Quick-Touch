@@ -32,6 +32,7 @@ class sessionViewModel: ObservableObject {
     var initialSec : Int = 0
     private var step: Float = 0.0
     private var tickCount = 0
+    @Published var showCompletionAlert = false
     
     var onSessionComplete: (() -> Void)?
     
@@ -67,6 +68,7 @@ class sessionViewModel: ObservableObject {
     func decrementTime(){
         if sessionMin == 0 && sessionSec == 0 {
             onSessionComplete!()
+            let _ = print("Session completed")
             self.resetSession()
         }
         else if sessionSec > 0 {

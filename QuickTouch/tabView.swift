@@ -15,12 +15,14 @@ struct tabView: View {
     let item = SessionData()
     var body: some View {
         TabView(selection: $selectedTab){
-            DataView()
-                .tabItem {
-                    Image(systemName: "chart.bar")
-                    Text("Data")
-                }
-                .tag(0)
+            NavigationStack {
+                DataView()
+            }
+            .tabItem {
+                Image(systemName: "chart.bar")
+                Text("Data")
+            }
+            .tag(0)
             SessionView(sessionDraft: sessionModel)
                 .tabItem {
                     Image(systemName: "timer")
