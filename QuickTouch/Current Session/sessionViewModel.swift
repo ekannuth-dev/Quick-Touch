@@ -68,7 +68,6 @@ class sessionViewModel: ObservableObject {
     func decrementTime(){
         if sessionMin == 0 && sessionSec == 0 {
             onSessionComplete!()
-            let _ = print("Session completed")
             self.resetSession()
         }
         else if sessionSec > 0 {
@@ -94,7 +93,7 @@ class sessionViewModel: ObservableObject {
     
     func resetSession(){
         play = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
             self.sessionMin = self.initialMin
             self.sessionSec = self.initialSec
             self.setupTimer()
