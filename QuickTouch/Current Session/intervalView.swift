@@ -9,15 +9,12 @@ import SwiftUI
 
 struct intervalView: View {
     @ObservedObject var draftModel: sessionViewModel
-    
-    // Constants for better maintainability
     private let circleSize: CGFloat = 40
     private let gridSpacing: CGFloat = 8
     private let gridColumns = Array(repeating: GridItem(.flexible(), spacing: 8), count: 4)
 
     var body: some View {
         VStack(spacing: 24) {
-            // Available Colors Section
             VStack(alignment: .leading, spacing: 12) {
                 Text("Select up to 5 Colors")
                     .font(.headline)

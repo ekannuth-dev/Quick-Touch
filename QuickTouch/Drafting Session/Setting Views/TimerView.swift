@@ -6,9 +6,8 @@
 //
 
 import Foundation
-
-
 import SwiftUI
+
 
 struct TimerView: View {
     @ObservedObject var draftSession: sessionViewModel
@@ -32,14 +31,13 @@ struct TimerView: View {
                 .fontWeight(.bold)
 
             VStack {
-                Picker("Seconds", selection: $draftSession.initialSec) {
+                Picker("Seconds", selection: $draftSession.initialSec){
                     ForEach(0...59, id: \.self) { num in
                         Text("\(num)").font(.headline)
                     }
                 }
                 .pickerStyle(.wheel)
-                .frame(height: 150) // ✅ Adjusted size
-                
+                .frame(height: 150)
                 Text("Sec").font(.caption).foregroundColor(.gray) // ✅ Smaller text label
             }
         }

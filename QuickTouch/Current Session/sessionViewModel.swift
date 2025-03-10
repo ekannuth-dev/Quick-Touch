@@ -28,11 +28,11 @@ class sessionViewModel: ObservableObject {
     @Published var progress: Float = 0.0
     @Published var timerCancellable: AnyCancellable?
     @Published var cache : Bool = false
+    @Published var showCompletionAlert = false
     var initialMin : Int = 0
     var initialSec : Int = 0
     private var step: Float = 0.0
     private var tickCount = 0
-    @Published var showCompletionAlert = false
     
     var onSessionComplete: (() -> Void)?
     
@@ -51,8 +51,8 @@ class sessionViewModel: ObservableObject {
     }
     
     func setupTimer(){
-        if play != true && cache == false {
-            saveTime()
+        if play != true {
+            saveTime()// timer is now at zero
             setTimertext()
             progress = 0
             let totalSeconds = Float(sessionMin * 60 + sessionSec)
@@ -67,7 +67,9 @@ class sessionViewModel: ObservableObject {
     
     func decrementTime(){
         if sessionMin == 0 && sessionSec == 0 {
+           // cache = false
             onSessionComplete!()
+            saveTime()
             self.resetSession()
         }
         else if sessionSec > 0 {
@@ -94,8 +96,6 @@ class sessionViewModel: ObservableObject {
     func resetSession(){
         play = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
-            self.sessionMin = self.initialMin
-            self.sessionSec = self.initialSec
             self.setupTimer()
         }
     }
