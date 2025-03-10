@@ -5,20 +5,35 @@
 //  Created by Ehan kannuthurai on 2024-09-27.
 //
 
-import Foundation
 import SwiftUI
+import SwiftData
 
-struct sessionView: View {
+struct SessionView: View {
+    @Environment(\.modelContext) private var context
     @ObservedObject var sessionDraft: sessionViewModel
+    @Query private var sessions: [SessionData]
+    @StateObject private var viewModel = sessionViewModel()
+    
     var body: some View {
+        VStack {
             circularTimer(currentSession: sessionDraft)
-            .navigationDestination(isPresented: $sessionDraft.endSession){
-                endSessionView(lastSession: sessionDraft)
+                .onAppear {
+                    sessionDraft.onSessionComplete = {
+                        let completedSession = SessionData()
+                        context.insert(completedSession)
+                        viewModel.showCompletionAlert = true
+                    }
+                }
+            .alert("Congratulations! 🎉", isPresented: $viewModel.showCompletionAlert) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text("You've successfully completed your session!")
             }
+        }
     }
 }
 
 #Preview {
-   sessionView(sessionDraft: sessionViewModel())
+   SessionView(sessionDraft: sessionViewModel())
 }
 

@@ -11,7 +11,8 @@ import SwiftUI
 struct QuickTouchApp: App {
     var body: some Scene {
         WindowGroup {
-            mainView()
+            tabView()
         }
+        .modelContainer(for: SessionData.self)
     }
 }
