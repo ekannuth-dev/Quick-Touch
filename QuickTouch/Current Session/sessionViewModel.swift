@@ -11,6 +11,7 @@ import SwiftUI
 
 
 class sessionViewModel: ObservableObject {
+<<<<<<< HEAD
     @Published var sessionMin : Int = 0
     @Published var sessionSec : Int = 0
     @Published var play : Bool = false
@@ -33,6 +34,9 @@ class sessionViewModel: ObservableObject {
     var initialSec : Int = 0
     private var step: Float = 0.0
     private var tickCount = 0
+=======
+    var sampleSession : sessionModel
+>>>>>>> 7f88646 (updating and implementing MVVM design pattern)
     
     var onSessionComplete: (() -> Void)?
     
