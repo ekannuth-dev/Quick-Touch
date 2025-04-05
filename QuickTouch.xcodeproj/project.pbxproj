@@ -19,10 +19,7 @@
 		34D894DA2CA7399B007E774E /* sessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D894D92CA7399B007E774E /* sessionView.swift */; };
 		34D894DE2CAB73B3007E774E /* circularTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D894DD2CAB73B3007E774E /* circularTimerView.swift */; };
 		34EF01CF2CC6AC7800F7451B /* sessionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34EF01CE2CC6AC7800F7451B /* sessionButtons.swift */; };
-<<<<<<< HEAD
-=======
 		34FE0F082DA086B4005E2871 /* sessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FE0F072DA086B1005E2871 /* sessionModel.swift */; };
->>>>>>> 7f88646 (updating and implementing MVVM design pattern)
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,10 +36,7 @@
 		34D894D92CA7399B007E774E /* sessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sessionView.swift; sourceTree = "<group>"; };
 		34D894DD2CAB73B3007E774E /* circularTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = circularTimerView.swift; sourceTree = "<group>"; };
 		34EF01CE2CC6AC7800F7451B /* sessionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sessionButtons.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
-=======
 		34FE0F072DA086B1005E2871 /* sessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sessionModel.swift; sourceTree = "<group>"; };
->>>>>>> 7f88646 (updating and implementing MVVM design pattern)
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -111,10 +105,7 @@
 			children = (
 				343F3DC62D54053C009EA0A8 /* intervalView.swift */,
 				340E401A2C934BA30064A8ED /* sessionViewModel.swift */,
-<<<<<<< HEAD
-=======
 				34FE0F072DA086B1005E2871 /* sessionModel.swift */,
->>>>>>> 7f88646 (updating and implementing MVVM design pattern)
 				34D894DD2CAB73B3007E774E /* circularTimerView.swift */,
 				343F3DCA2D5BBBF4009EA0A8 /* overLayView.swift */,
 				34D894D92CA7399B007E774E /* sessionView.swift */,
@@ -205,10 +196,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
-=======
 				34FE0F082DA086B4005E2871 /* sessionModel.swift in Sources */,
->>>>>>> 7f88646 (updating and implementing MVVM design pattern)
 				343F3DC72D540546009EA0A8 /* intervalView.swift in Sources */,
 				343F3DCD2D64057F009EA0A8 /* dataView.swift in Sources */,
 				34D894DA2CA7399B007E774E /* sessionView.swift in Sources */,
@@ -352,11 +340,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"QuickTouch/Preview Content\"";
-<<<<<<< HEAD
 				DEVELOPMENT_TEAM = CDB5L2XBMW;
-=======
 				DEVELOPMENT_TEAM = LV8WH3CF83;
->>>>>>> 7f88646 (updating and implementing MVVM design pattern)
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -385,11 +370,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"QuickTouch/Preview Content\"";
-<<<<<<< HEAD
 				DEVELOPMENT_TEAM = CDB5L2XBMW;
-=======
 				DEVELOPMENT_TEAM = LV8WH3CF83;
->>>>>>> 7f88646 (updating and implementing MVVM design pattern)
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

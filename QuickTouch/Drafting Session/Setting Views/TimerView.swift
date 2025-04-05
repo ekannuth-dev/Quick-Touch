@@ -11,10 +11,6 @@ import SwiftUI
 
 struct TimerView: View {
     @ObservedObject var draftSession: sessionViewModel
-<<<<<<< HEAD
-
-=======
->>>>>>> 7f88646 (updating and implementing MVVM design pattern)
     var body: some View {
         HStack(spacing: 10) { // ✅ Reduced spacing for compact look
             VStack {
@@ -25,10 +21,6 @@ struct TimerView: View {
                 }
                 .pickerStyle(.wheel)
                 .frame(height: 150) // ✅ Adjusted size
-<<<<<<< HEAD
-                
-=======
->>>>>>> 7f88646 (updating and implementing MVVM design pattern)
                 Text("Min").font(.caption).foregroundColor(.gray) // ✅ Smaller text label
             }
             
