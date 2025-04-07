@@ -12,7 +12,7 @@ struct SessionView: View {
     @Environment(\.modelContext) private var context
     @ObservedObject var sessionDraft: sessionViewModel
     @Query private var sessions: [SessionData]
-    @StateObject private var viewModel = sessionViewModel()
+    @StateObject private var viewModel = sessionModel()
     
     var body: some View {
         VStack {
@@ -33,7 +33,7 @@ struct SessionView: View {
     }
 }
 
-#Preview {
-   SessionView(sessionDraft: sessionViewModel())
-}
+//#Preview {
+//    SessionView(sessionDraft: sessionViewModel(sampleSession: <#sessionModel#>))
+//}
 

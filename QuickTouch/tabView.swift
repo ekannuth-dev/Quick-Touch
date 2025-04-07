@@ -10,7 +10,7 @@ import Observation
 
 
 struct tabView: View {
-    @StateObject var sessionModel = sessionViewModel()
+    @StateObject var currentModel = sessionViewModel(sampleSession: sessionModel())
     @State var selectedTab = 1
     let item = SessionData()
     var body: some View {
@@ -23,13 +23,13 @@ struct tabView: View {
                 Text("Data")
             }
             .tag(0)
-            SessionView(sessionDraft: sessionModel)
+            SessionView(sessionDraft: currentModel)
                 .tabItem {
                     Image(systemName: "timer")
                     Text("Session")
                 }
                 .tag(1)
-            settingView(draftModel: sessionModel)
+            settingView(draftModel: currentModel)
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")

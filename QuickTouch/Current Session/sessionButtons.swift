@@ -16,7 +16,12 @@ struct sessionButtons: View {
     var body: some View {
         HStack {
             Button {
-                sameSession.play.toggle()
+                if sameSession.play == true {
+                    sameSession.play = false
+                }
+                else {
+                    sameSession.play = true
+                }
             }
             label: {
                 Image(systemName:  sameSession.play ? "pause.fill" : "play.fill")

@@ -19,7 +19,6 @@ struct circularTimer : View {
                 ZStack {
                     FullScreenOverlay(currentSession: currentSession)
                     sessionButtons(sameSession: currentSession)
-
                 }
             } else {
                 VStack {
@@ -43,7 +42,6 @@ struct circularTimer : View {
                             .foregroundColor(.blue)
                             .bold()
                     }
-                    
                     sessionButtons(sameSession: currentSession)
                 }
                 .padding(50)

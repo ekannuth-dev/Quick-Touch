@@ -14,7 +14,10 @@ struct TimerView: View {
     var body: some View {
         HStack(spacing: 10) { // ✅ Reduced spacing for compact look
             VStack {
-                Picker("Minutes", selection: $draftSession.initialMin) {
+                Picker("Minutes", selection: Binding(
+                    get: { draftSession.initialMin },
+                    set: { draftSession.initialMin = $0 }
+                )) {
                     ForEach(0...59, id: \.self) { num in
                         Text("\(num)").font(.headline)
                     }
@@ -23,13 +26,16 @@ struct TimerView: View {
                 .frame(height: 150) // ✅ Adjusted size
                 Text("Min").font(.caption).foregroundColor(.gray) // ✅ Smaller text label
             }
-            
+            let _ = print(draftSession.initialMin)
             Text(":") // ✅ Adds a separator for clarity
                 .font(.largeTitle)
                 .fontWeight(.bold)
-
+            
             VStack {
-                Picker("Seconds", selection: $draftSession.initialSec){
+                Picker("Seconds", selection: Binding(
+                    get: { draftSession.initialSec },
+                    set: { draftSession.initialSec = $0 }
+                )) {
                     ForEach(0...59, id: \.self) { num in
                         Text("\(num)").font(.headline)
                     }

@@ -47,7 +47,7 @@ struct settingView: View {
 }
 
 
-#Preview {
-    let mockModel = sessionViewModel()
-    settingView(draftModel: mockModel)
-}
+//#Preview {
+//    let mockModel = sessionViewModel(sampleSession: ())
+//    settingView(draftModel: mockModel)
+//}

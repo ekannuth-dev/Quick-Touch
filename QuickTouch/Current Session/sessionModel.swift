@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 
-class sesssionModel : ObservableObject {
+class sessionModel : ObservableObject {
     @Published var sessionMin : Int = 0
     @Published var sessionSec : Int = 0
     @Published var play : Bool = false
@@ -25,11 +25,11 @@ class sesssionModel : ObservableObject {
     ]
     @Published var isIntervalSession = false
     @Published var progress: Float = 0.0
-    @Published var timerCancellable: AnyCancellable?
     @Published var cache : Bool = false
     @Published var showCompletionAlert = false
-    var initialMin : Int = 0
-    var initialSec : Int = 0
-    private var step: Float = 0.0
-    private var tickCount = 0
+    @Published var timerCancellable: AnyCancellable?
+    @Published var initialMin : Int = 0
+    @Published var initialSec : Int = 0
+    @Published var step: Float = 0.0
+    @Published var tickCount = 0
 }
