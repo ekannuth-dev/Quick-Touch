@@ -9,27 +9,5 @@ import Foundation
 import Combine
 
 
-class sessionModel : ObservableObject {
-    @Published var sessionMin : Int = 0
-    @Published var sessionSec : Int = 0
-    @Published var play : Bool = false
-    @Published var timerText: String = ""
-    @Published var intervalColor : [Color] = []
-    @Published var availableColors: [(name: String, color: Color)] = [
-        ("Red", .red),
-        ("Blue", .blue),
-        ("Green", .green),
-        ("Yellow", .yellow),
-        ("Orange", .orange),
-        ("Purple", .purple)
-    ]
-    @Published var isIntervalSession = false
-    @Published var progress: Float = 0.0
-    @Published var cache : Bool = false
-    @Published var showCompletionAlert = false
-    @Published var timerCancellable: AnyCancellable?
-    @Published var initialMin : Int = 0
-    @Published var initialSec : Int = 0
-    @Published var step: Float = 0.0
-    @Published var tickCount = 0
-}
+//class sessionModel : ObservableObject {
+//}

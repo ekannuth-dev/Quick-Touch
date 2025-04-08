@@ -10,11 +10,12 @@ import Observation
 
 
 struct tabView: View {
-    @StateObject var currentModel = sessionViewModel(sampleSession: sessionModel())
+    @StateObject private var currentModel = sessionViewModel()
     @State var selectedTab = 1
     let item = SessionData()
+    
     var body: some View {
-        TabView(selection: $selectedTab){
+        TabView(selection: $selectedTab) {
             NavigationStack {
                 DataView()
             }
@@ -23,12 +24,14 @@ struct tabView: View {
                 Text("Data")
             }
             .tag(0)
+            
             SessionView(sessionDraft: currentModel)
                 .tabItem {
                     Image(systemName: "timer")
                     Text("Session")
                 }
                 .tag(1)
+            
             settingView(draftModel: currentModel)
                 .tabItem {
                     Image(systemName: "gear")

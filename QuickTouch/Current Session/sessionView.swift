@@ -12,7 +12,6 @@ struct SessionView: View {
     @Environment(\.modelContext) private var context
     @ObservedObject var sessionDraft: sessionViewModel
     @Query private var sessions: [SessionData]
-    @StateObject private var viewModel = sessionModel()
     
     var body: some View {
         VStack {
@@ -21,10 +20,10 @@ struct SessionView: View {
                     sessionDraft.onSessionComplete = {
                         let completedSession = SessionData()
                         context.insert(completedSession)
-                        viewModel.showCompletionAlert = true
+                        sessionDraft.showCompletionAlert = true
                     }
                 }
-            .alert("Congratulations! 🎉", isPresented: $viewModel.showCompletionAlert) {
+            .alert("Congratulations! 🎉", isPresented: $sessionDraft.showCompletionAlert) {
                 Button("OK", role: .cancel) { }
             } message: {
                 Text("You've successfully completed your session!")
