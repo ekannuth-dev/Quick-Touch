@@ -13,7 +13,6 @@ struct tabView: View {
     @StateObject private var currentModel = sessionViewModel()
     @State var selectedTab = 1
     let item = SessionData()
-    
     var body: some View {
         TabView(selection: $selectedTab) {
             NavigationStack {
